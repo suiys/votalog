@@ -1,9 +1,9 @@
 <header>
   <nav class="bg-secondary navbar fixed-top navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="home-page.html">
+      <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "votalog.png", class: "logo-icon", alt: "ロゴアイコン" %>
-      </a>
+      <% end %>
       <button class="navbar-toggler" type="button"
               data-toggle="collapse"
               data-target="#navbarTogglerDemo"
@@ -15,10 +15,10 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item mr-4 mb-2 mb-lg-0">
-            <a class="nav-link active" href="home-page.html">ログイン</a>
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
           </li>
           <li class="nav-item mr-4 mb-2 mb-lg-0">
-            <a class="nav-link" href="services.html">新規登録</a>
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown mr-4 mb-2 mb-lg-0">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
