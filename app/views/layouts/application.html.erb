@@ -15,7 +15,7 @@
     <%= yield %>
     <% flash.each do |type, message| %>
       <%= content_tag :div, message,
-      class: "alert text-white bg-#{type == 'notice' ? 'success' : 'warning'}" %>
+      class: "alert text-center text-white bg-#{type == 'notice' ? 'success' : 'warning'}" %>
     <% end %>
     <%= render "shared/footer" %>
   </body>
