@@ -58,7 +58,7 @@
       <%= link_to "ログイン", new_user_session_path %>
     </p>
     <p class="mb-2 pl-2">アカウントを作成せずご利用になるには、
-      <%= link_to "ゲストログイン", "#" %>
+      <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
     </p>
   </div>
 </section>
