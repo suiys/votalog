@@ -13,6 +13,13 @@
   <body>
     <%= render "shared/header" %>
     <%= yield %>
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, message,
+      class: "alert text-center text-white bg-#{type == 'notice' ? 'success' : 'warning'}" %>
+    <% end %>
     <%= render "shared/footer" %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </body>
 </html>

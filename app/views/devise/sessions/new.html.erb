@@ -1,0 +1,34 @@
+<section class="u-content-space">
+  <div class="container">
+    <header class="w-md50 mx-auto text-center mb-6">
+      <h2>ログイン</h2>
+    </header>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group mb-4">
+        <%= f.label :email, "メールアドレス", class: "u-font-size-90" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+
+      <div class="form-group mb-4">
+        <%= f.label :password, "パスワード", class: "u-font-size-90" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="custom-control custom-checkbox mb-6">
+          <%= f.check_box :remember_me, class: "custom-control-input" %>
+          <%= f.label :remember_me, "ログイン情報を記憶する", class: "custom-control-label u-font-size-90" %>
+        </div>
+      <% end %>
+
+      <div class="text-center mb-6">
+        <%= f.submit "ログイン", class: "btn btn-secondary btn-lg" %>
+      </div>
+    <% end %>
+    <hr class="mb-4">
+    <p class="mb-2 pl-2">アカウントをお持ちでない場合は、
+      <%= link_to "新規作成", new_user_registration_path %> または
+      <%= link_to "ゲストログイン", "#" %> をご利用ください
+    </p>
+  </div>
+</section>
