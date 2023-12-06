@@ -5,14 +5,22 @@
         <div class="text-center">
           <h1 class="display-sm-4 display-lg-3 mb-3">Votalog</h1>
           <p class="u-letter-spacing-sm mb-4">「この前いつ水やりしたっけ？」「この株いつ頃植え替えればいいんだっけ？」がなくなる多肉植物管理ツールVotalog(ボタログ)。</p>
-          <%= link_to new_user_registration_path, class: "btn btn-secondary" do %>
-            新規登録はこちら
-            <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-          <% end %>
-          <%= link_to new_user_session_path, class: "btn btn-outline-primary" do %>
-            ログインはこちら
-            <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-          <% end %>
+          <div class="btn_for_signup mb-3">
+            <%= link_to new_user_registration_path, class: "btn btn-secondary firstview-signup-btn" do %>
+              新規登録はこちら
+              <i class="fas fa-arrow-alt-circle-right"></i>
+            <% end %>
+          </div>
+          <div class="btns_for_signin">
+            <%= link_to new_user_session_path, class: "btn btn-primary firstview-signin-btn" do %>
+              ログインはこちら
+              <i class="fas fa-arrow-alt-circle-right"></i>
+            <% end %>
+            <%= link_to users_guest_sign_in_path, class: "btn btn-primary firstview-signin-btn" do %>
+              ゲストログインはこちら
+              <i class="fas fa-arrow-alt-circle-right"></i>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
