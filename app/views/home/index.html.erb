@@ -1,35 +1,6 @@
-<section class="u-promo-block u-promo-block--mheight-600 u-overlay u-overlay--dark text-white firstview-wrapper">
-  <div class="container u-overlay__inner u-ver-center u-content-space">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <div class="text-center">
-          <h1 class="display-sm-4 display-lg-3 mb-3">Votalog</h1>
-          <p class="u-letter-spacing-sm mb-4">「この前いつ水やりしたっけ？」「この株いつ頃植え替えればいいんだっけ？」がなくなる多肉植物管理ツールVotalog(ボタログ)。</p>
-          <%= link_to new_user_registration_path, class: "btn btn-secondary" do %>
-            新規登録はこちら
-            <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-          <% end %>
-          <%= link_to new_user_session_path, class: "btn btn-outline-primary" do %>
-            ログインはこちら
-            <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="u-content-space">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 align-self-center mb-5 mb-lg-0 pr-lg-5">
-        <header class="mb-5">
-          <h2 class="h1">Votalogとは</h2>
-          <p class="h5">要約テキスト</p>
-        </header>
-        <p class="mb-4">ここに機能説明文</p>
-      <div class="col-lg-6 align-self-center">
-        <!-- <img class="img-fluid rounded" src="assets/img-temp/900x700/img1.png" alt="TODO//ここにスクショ画像"> -->
-      </div>
-    </div>
-  </div>
-</section>
+<% if user_signed_in? %>
+  <p>ログイン後のトップページ</p>
+<% else %>
+  <%= render "shared/firstview" %>
+  <%= render "shared/about" %>
+<% end %>
