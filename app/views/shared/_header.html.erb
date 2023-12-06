@@ -21,7 +21,7 @@
                 <i class="fas fa-angle-down small ml-1"></i>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to "アカウント", "#", class: "dropdown-item" %>
+                <%= link_to "アカウント", users_account_path, class: "dropdown-item" %>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
               </div>
             </div>
