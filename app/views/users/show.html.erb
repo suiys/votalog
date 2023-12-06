@@ -1,0 +1,41 @@
+<section class="u-content-space">
+  <div class="container">
+    <header class="w-md50 mx-auto text-center mb-6">
+      <h2>アカウント情報</h2>
+    </header>
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <p class="text-center mb-0">ユーザー名</p>
+      </div>
+      <div class="col-md-6">
+        <p class="text-center mb-0">
+          <%= @user.name %>
+        </p>
+      </div>
+    </div>
+    <hr class="mb-3">
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <p class="text-center mb-0">メールアドレス</p>
+      </div>
+      <div class="col-md-6">
+        <p class="text-center mb-0">
+          <%= @user.email %>
+        </p>
+      </div>
+    </div>
+    <hr class="mb-3">
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <p class="text-center mb-0">パスワード</p>
+      </div>
+      <div class="col-md-6">
+        <p class="text-center mb-0">******</p>
+      </div>
+    </div>
+    <hr class="mb-6">
+    <div class="text-center mb-2">
+      <%= link_to "登録情報の変更", edit_user_registration_path, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+</section>
