@@ -34,8 +34,11 @@
       </div>
     </div>
     <hr class="mb-6">
-    <div class="text-center mb-2">
+    <div class="text-center mb-4">
       <%= link_to "登録情報の変更", edit_user_registration_path, class: "btn btn-outline-secondary" %>
+    </div>
+    <div class="text-center mb-2">
+      <%= link_to "このアカウントを削除する(退会)", user_registration_path, method: :delete, data: { confirm: "本当にこのアカウントを削除してよろしいですか？"}, class: "btn btn-outline-danger" %>
     </div>
   </div>
 </section>
