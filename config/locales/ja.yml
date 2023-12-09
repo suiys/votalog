@@ -7,6 +7,13 @@ ja:
         password: パスワード
         password_confirmation: パスワード（確認用）
         current_password: 現在のパスワード
+      plant:
+        name: 株名称
+        next_water_day: 次の水やり予定日
+        next_fertilizer_day: 次の肥料/栄養剤散布予定日
+        next_replant_day: 次の植替え予定日
+        image: 株画像
     models:
       user: ユーザー
+      plant: 株
 
