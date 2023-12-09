@@ -1,0 +1,24 @@
+<section class="u-content-space">
+  <div class="container">
+    <header class="w-md50 mx-auto mb-2">
+      <h4>マイ多肉棚</h4>
+    </header>
+    <div class="mb-6 text-right">
+      <%= link_to new_plant_path, class: "btn btn-outline-info" do %>
+        新しい株を追加する<i class="fas fa-plus-circle ml-2"></i>
+      <% end %>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-4 col-md-6 text-center">
+        <%= link_to "ALL", root_path, class: "btn btn-outline-secondary" %>
+      </div>
+      <% resources.each do |resource| %>
+        <div class="col-lg-4 col-md-6 text-center">
+          <%= link_to plant_path(resource), class: "btn btn-outline-secondary" do %>
+            <%= resource.name %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
