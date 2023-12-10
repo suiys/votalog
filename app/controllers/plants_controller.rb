@@ -18,6 +18,7 @@ class PlantsController < ApplicationController
 
   def show
     @user = current_user
+    @plant = Plant.find(params[:id])
   end
 
   def update
