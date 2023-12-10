@@ -22,6 +22,16 @@ class PlantsController < ApplicationController
   end
 
   def update
+    @plant = Plant.find(params[:id])
+    respond_to do |format|
+      if @plant.update(plant_params)
+        format.html { redirect_to @plant }
+        format.js
+      else
+        format.html { redirect_to @plant }
+        format.js { render :errors }
+      end
+    end
   end
 
   def destroy

@@ -1,0 +1,6 @@
+$('.js-error-message').replaceWith(
+  "<%= escape_javascript(
+    render 'shared/error_messages/invalid_next_day',
+    resource: @plant
+  ) %>"
+);

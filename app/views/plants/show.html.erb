@@ -1,6 +1,6 @@
 <section class="u-content-space">
   <div class="container">
-    <header class="w-md50 mx-automb-6 d-flex justify-content-between align-items-center">
+    <header class="w-md50 mx-automb-6 mb-4 d-flex justify-content-between align-items-center">
       <h2 class="mb-0">お世話ログ for <%= @plant.name %></h2>
       <div>
         <% if @plant.image.attached? %>
@@ -8,7 +8,69 @@
         <% end %>
       </div>
     </header>
+    <div class="row mb-2">
+      <div class="col-md-4 text-center bg-light p-3">
+        <p>次回水やり予定日</p>
+        <hr class="mb-6">
+        <div class="js-next-water-day">
+          <%= render "plants/next_water_day", plant: @plant %>
+        </div>
+      </div>
+      <div class="col-md-4 text-center bg-light p-3">
+        <p>次回肥料/栄養剤散布予定日</p>
+        <hr class="mb-6">
+        <div class="js-next-fertilizer-day">
+          <%= render "plants/next_fertilizer_day", plant: @plant %>
+        </div>
+        <div class="mt-4">
+          <%= link_to "#nextDayModal", class: "btn btn-outline-info", data: { toggle: "modal" } do %>
+            お世話予定を追加/変更<i class="fas fa-plus-circle ml-2"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-4 text-center bg-light p-3">
+        <p>次回植替え予定日</p>
+        <hr class="mb-6">
+        <div class="js-next-replant-day">
+          <%= render "plants/next_replant_day", plant: @plant %>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <%= render  "shared/my_shelf", resources: @user.plants %>
+
+<div class="modal fade" id="nextDayModal" tabindex="-1" role="dialog" area-labelledby="nextDayTitle" style="display: none;" area-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nextDayTitle">次回お世話予定の追加/変更</h5>
+        <button type="button" class="close" data-dismiss="modal" area-label="Close">
+          <span area-hidden="true">x</span>
+        </button>
+      </div>
+      <%= form_with model: @plant, local: false, class: "js-form" do |f| %>
+        <div class="modal-body">
+          <div class="form-group mb-4">
+            <%= f.label :next_water_day, class: "u-font-size-90" %>
+            <%= f.date_field :next_water_day, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="form-group mb-4">
+            <%= f.label :next_fertilizer_day, class: "u-font-size-90" %>
+            <%= f.date_field :next_fertilizer_day, class: "form-control" %>
+          </div>
+          <div class="form-group mb-4">
+            <%= f.label :next_replant_day, class: "u-font-size-90" %>
+            <%= f.date_field :next_replant_day, class: "form-control" %>
+          </div>
+          <div class="js-error-message"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">キャンセル</button>
+          <%= f.submit "決定", class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
