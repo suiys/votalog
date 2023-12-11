@@ -1,0 +1,7 @@
+$('#nextDayModal').modal('hide');
+$('.js-next-water-day').empty();
+$('.js-next-water-day').append("<%= escape_javascript(render partial: "plants/next_water_day", locals: { plant: @plant }) %>");
+$('.js-next-fertilizer-day').empty();
+$('.js-next-fertilizer-day').append("<%= escape_javascript(render partial: "plants/next_fertilizer_day", locals: { plant: @plant }) %>");
+$('.js-next-replant-day').empty();
+$('.js-next-replant-day').append("<%= escape_javascript(render partial: "plants/next_replant_day", locals: { plant: @plant }) %>");

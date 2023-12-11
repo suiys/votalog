@@ -18,12 +18,30 @@ class PlantsController < ApplicationController
 
   def show
     @user = current_user
+    @plant = Plant.find(params[:id])
+  end
+
+  def edit
+    @plant = Plant.find(params[:id])
   end
 
   def update
+    @plant = Plant.find(params[:id])
+    respond_to do |format|
+      if @plant.update(plant_params)
+        format.html { redirect_to @plant }
+        format.js
+      else
+        format.html { render :edit }
+        format.js { render :errors }
+      end
+    end
   end
 
   def destroy
+    @plant = Plant.find(params[:id])
+    @plant.destroy
+    redirect_to root_path, notice: "#{@plant.name}を削除しました"
   end
 
   def plant_params

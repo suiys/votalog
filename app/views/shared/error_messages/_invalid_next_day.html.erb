@@ -1,0 +1,7 @@
+<% if resource.errors.any? %>
+  <div class="invalid-input mt-4 text-center">
+    <% resource.errors.full_messages.each do |msg| %>
+      <%= msg %>
+    <% end %>
+  </div>
+<% end %>

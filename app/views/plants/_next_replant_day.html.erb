@@ -1,0 +1,5 @@
+<% if plant.next_replant_day %>
+  <p><%= plant.next_replant_day.strftime("%Y年%m月%d日") %></p>
+<% else %>
+  <p>----年--月--日</p>
+<% end %>
