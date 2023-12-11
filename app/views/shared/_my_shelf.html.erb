@@ -9,11 +9,11 @@
       <% end %>
     </div>
     <div class="row mb-2">
-      <div class="col-lg-4 col-md-6 text-center">
+      <div class="col-lg-4 col-md-6 text-center mb-3">
         <%= link_to "ALL", root_path, class: "btn btn-outline-secondary" %>
       </div>
       <% resources.each do |resource| %>
-        <div class="col-lg-4 col-md-6 text-center">
+        <div class="col-lg-4 col-md-6 text-center mb-3">
           <%= link_to plant_path(resource), class: "btn btn-outline-secondary" do %>
             <%= resource.name %>
           <% end %>
