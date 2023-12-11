@@ -21,6 +21,10 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
   end
 
+  def edit
+    @plant = Plant.find(params[:id])
+  end
+
   def update
     @plant = Plant.find(params[:id])
     respond_to do |format|
@@ -28,7 +32,7 @@ class PlantsController < ApplicationController
         format.html { redirect_to @plant }
         format.js
       else
-        format.html { redirect_to @plant }
+        format.html { render :edit }
         format.js { render :errors }
       end
     end
