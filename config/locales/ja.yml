@@ -13,7 +13,19 @@ ja:
         next_fertilizer_day: 次の肥料/栄養剤散布予定日
         next_replant_day: 次の植替え予定日
         image: 株画像
+      log:
+        start_time: 記録日時
+        is_watered: 水やり
+        is_fertilized: 肥料/栄養剤
+        is_replanted: 植替え
+        memo: メモ
+        image: 画像
+        temperature: 気温
+        humidity: 湿度
+        light_start_at: 植物育成ライト点灯時刻
+        light_end_at: 植物育成ライト消灯時刻
     models:
       user: ユーザー
       plant: 株
+      log: ログ
 
