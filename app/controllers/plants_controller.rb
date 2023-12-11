@@ -39,6 +39,9 @@ class PlantsController < ApplicationController
   end
 
   def destroy
+    @plant = Plant.find(params[:id])
+    @plant.destroy
+    redirect_to root_path, notice: "#{@plant.name}を削除しました"
   end
 
   def plant_params
