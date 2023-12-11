@@ -6,6 +6,7 @@ class Plant < ApplicationRecord
   validate :is_next_replant_day_after_today?
 
   belongs_to :user
+  has_many :logs, dependent: :destroy
 
   has_one_attached :image
 

@@ -6,6 +6,9 @@ class Log < ApplicationRecord
   validates :light_end_at, comparison: { greater_than: :light_start_at, message: "植物育成ライト消灯時刻は点灯時刻よりも後の時刻を入力してください" }
   validate :is_file_type_valid?
 
+  belongs_to :user
+  belongs_to :plant
+
   has_one_attached :image
 
   def is_file_type_valid?
