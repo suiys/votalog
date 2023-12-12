@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'users/account', to: 'users#show'
   resources :plants, except: :index
+  resources :logs, except: :index
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
