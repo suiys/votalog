@@ -102,10 +102,10 @@
     <hr class="mb-6">
     <div class="d-flex justify-content-around p-4">
       <div class="text-center">
-        <%= link_to "ログを編集", edit_log_path, class: "btn btn-outline-secondary" %>
+        <%= link_to "ログを編集", edit_log_path(@log), class: "btn btn-outline-secondary" %>
       </div>
       <div class="text-center">
-        <%= link_to "ログを削除", log_path, method: :delete, data: { confirm: "本当にこのログを削除してよろしいですか？"}, class: "btn btn-outline-danger" %>
+        <%= link_to "ログを削除", log_path(@log), method: :delete, data: { confirm: "本当にこのログを削除してよろしいですか？"}, class: "btn btn-outline-danger" %>
       </div>
     </div>
   </div>
