@@ -1,0 +1,5 @@
+<% if resource.errors.include?(:temperature) %>
+  <div class="invalid-input">
+    <%= resource.errors.full_messages_for(:temperature).first %>
+  </div>
+<% end %>

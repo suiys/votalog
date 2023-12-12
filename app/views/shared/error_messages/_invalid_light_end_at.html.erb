@@ -1,0 +1,5 @@
+<% if resource.errors.include?(:light_end_at) %>
+  <div class="invalid-input">
+    <%= resource.errors.full_messages_for(:light_end_at).first %>
+  </div>
+<% end %>

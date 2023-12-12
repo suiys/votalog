@@ -24,8 +24,9 @@ ja:
         humidity: 湿度
         light_start_at: 植物育成ライト点灯時刻
         light_end_at: 植物育成ライト消灯時刻
+        plant_id: 株
+        plant: 株名称
     models:
       user: ユーザー
       plant: 株
       log: ログ
-
