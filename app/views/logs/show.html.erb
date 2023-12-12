@@ -1,0 +1,113 @@
+<section class="u-content-space">
+  <div class="container">
+    <header class="w-md50 mx-auto text-center mb-6">
+      <h2>
+        <%= @log.start_time.strftime("%Y/%m/%d") %> の
+        <%= @log.plant.name %> ログ
+      </h2>
+    </header>
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <p class="text-center mb-0">記録日時</p>
+      </div>
+      <div class="col-md-8">
+        <p class="text-center mb-0">
+          <%= @log.start_time.strftime("%Y/%m/%d %H:%M") %>
+        </p>
+      </div>
+    </div>
+    <hr class="mb-3">
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <p class="text-center mb-0">お世話内容</p>
+      </div>
+      <div class="col-md-8">
+        <p class="text-center mb-0">
+          <% if @log.is_watered %>
+            水やり
+          <% end %>
+          <% if @log.is_fertilized %>
+            肥料/栄養剤
+          <% end %>
+          <% if @log.is_replanted %>
+            植替え
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <hr class="mb-3">
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <p class="text-center mb-0">気温</p>
+      </div>
+      <div class="col-md-8">
+        <p class="text-center mb-0">
+          <% if @log.temperature %>
+            <%= @log.temperature %> ℃
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <hr class="mb-3">
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <p class="text-center mb-0">湿度</p>
+      </div>
+      <div class="col-md-8">
+        <p class="text-center mb-0">
+          <% if @log.humidity %>
+            <%= @log.humidity %> %
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <hr class="mb-3">
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <p class="text-center mb-0">植物育成ライト</p>
+      </div>
+      <div class="col-md-8">
+        <p class="text-center mb-0">
+          <% if @log.light_start_at || @log.light_end_at %>
+            <%= @log.light_start_at.strftime("%Y/%m/%d %H:%M") %>
+            ~
+            <%= @log.light_end_at.strftime("%Y/%m/%d %H:%M") %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <hr class="mb-3">
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <p class="text-center mb-0">メモ</p>
+      </div>
+      <div class="col-md-8">
+        <p class="text-center mb-0 text-truncate">
+          <%= @log.memo %>
+        </p>
+      </div>
+    </div>
+    <hr class="mb-3">
+    <div class="row mb-2">
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <p class="text-center mb-0">画像</p>
+      </div>
+      <div class="col-md-8">
+        <div class="text-center">
+          <% if @log.image.attached? %>
+            <%= image_tag @log.image.variant(resize: "200", gravity: "center", crop: "200x200+0+0").processed, class: "u-box-shadow-lg img-fluid rounded", alt: "ログ添付画像" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <hr class="mb-6">
+    <div class="d-flex justify-content-around p-4">
+      <div class="text-center">
+        <%= link_to "ログを編集", edit_log_path, class: "btn btn-outline-secondary" %>
+      </div>
+      <div class="text-center">
+        <%= link_to "ログを削除", log_path, method: :delete, data: { confirm: "本当にこのログを削除してよろしいですか？"}, class: "btn btn-outline-danger" %>
+      </div>
+    </div>
+  </div>
+</section>

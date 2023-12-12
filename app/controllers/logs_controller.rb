@@ -17,6 +17,7 @@ class LogsController < ApplicationController
   end
 
   def show
+    @log = Log.find(params[:id])
   end
 
   def edit
