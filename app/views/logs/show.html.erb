@@ -69,8 +69,7 @@
       <div class="col-md-8">
         <p class="text-center mb-0">
           <% if @log.light_start_at || @log.light_end_at %>
-            <%= @log.light_start_at.strftime("%Y/%m/%d %H:%M") %>
-            ~
+            <%= @log.light_start_at.strftime("%Y/%m/%d %H:%M") %> ~
             <%= @log.light_end_at.strftime("%Y/%m/%d %H:%M") %>
           <% end %>
         </p>
