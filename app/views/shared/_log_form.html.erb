@@ -1,0 +1,68 @@
+<div class="form-group mb-4">
+  <%= f.label :start_time, class: "u-font-size-90 required-column" %>
+  <%= f.datetime_field :start_time, autofocus: true, class: "form-control" %>
+  <%= render "shared/error_messages/invalid_start_time", resource: f.object %>
+</div>
+<div class="form-group mb-4">
+  <%= f.label :plant_id, class: "u-font-size-90 required-column" %>
+  <%= f.collection_select :plant_id, current_user.plants, :id, :name, { include_blank: "選択してください" }, { class: "form-control" } %>
+  <%= render "shared/error_messages/invalid_plant_id", resource: f.object %>
+</div>
+<div class="row pl-3">
+  <p class="u-font-size-90 mb-2">お世話内容</p>
+</div>
+<div class="row mb-4">
+  <div class="col-md-4 text-center">
+    <div class="custom-control custom-checkbox">
+      <%= f.check_box :is_watered, class: "custom-control-input" %>
+      <%= f.label :is_watered, class: "custom-control-label" %>
+    </div>
+  </div>
+  <div class="col-md-4 text-center">
+    <div class="custom-control custom-checkbox">
+      <%= f.check_box :is_fertilized, class: "custom-control-input" %>
+      <%= f.label :is_fertilized, class: "custom-control-label" %>
+    </div>
+  </div>
+  <div class="col-md-4 text-center">
+    <div class="custom-control custom-checkbox">
+      <%= f.check_box :is_replanted, class: "custom-control-input" %>
+      <%= f.label :is_replanted, class: "custom-control-label" %>
+    </div>
+  </div>
+</div>
+<div class="form-group mb-4">
+  <%= f.label :memo, class: "u-font-size-90" %>
+  <%= f.text_area :memo, placeholder: "メモ", class: "form-control" %>
+  <%= render "shared/error_messages/invalid_memo", resource: f.object %>
+</div>
+<div class="form-group mb-4">
+  <%= f.label :temperature, class: "u-font-size-90" %>
+  <%= f.number_field :temperature, step: "0.1", placeholder: "12.3", class: "form-control" %>
+  <%= render "shared/error_messages/invalid_temperature", resource: f.object %>
+</div>
+<div class="form-group mb-4">
+  <%= f.label :humidity, class: "u-font-size-90" %>
+  <%= f.number_field :humidity, step: "0.1", placeholder: "65.4", class: "form-control" %>
+  <%= render "shared/error_messages/invalid_humidity", resource: f.object %>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group mb-4">
+      <%= f.label :light_start_at, class: "u-font-size-90" %>
+      <%= f.datetime_field :light_start_at, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group mb-4">
+      <%= f.label :light_end_at, class: "u-font-size-90" %>
+      <%= f.datetime_field :light_end_at, class: "form-control" %>
+      <%= render "shared/error_messages/invalid_light_end_at", resource: f.object %>
+    </div>
+  </div>
+</div>
+<div class="form-group mb-6">
+  <%= f.label :image, class: "u-font-size-90" %>
+  <%= f.file_field :image, class: "form-control" %>
+  <%= render "shared/error_messages/invalid_image", resource: f.object %>
+</div>
