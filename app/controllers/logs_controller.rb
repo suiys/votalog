@@ -21,12 +21,23 @@ class LogsController < ApplicationController
   end
 
   def edit
+    @log = Log.find(params[:id])
   end
 
   def update
+    @log = Log.find(params[:id])
+    if @log.update(log_params)
+      redirect_to plant_path(@log.plant), notice: "ログを更新しました"
+    else
+      flash.now[:alert] = "ログの更新に失敗しました"
+      render "edit"
+    end
   end
 
   def destroy
+    @log = Log.find(params[:id])
+    @log.destroy
+    redirect_to plant_path(@log.plant), notice: "ログを削除しました"
   end
 
   def log_params

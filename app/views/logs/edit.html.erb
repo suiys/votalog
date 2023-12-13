@@ -1,12 +1,12 @@
 <section class="u-content-space">
   <div class="container">
     <header class="w-md50 mx-auto text-center mb-6">
-      <h2>新規ログ追加</h2>
+      <h2>ログ編集</h2>
     </header>
     <%= form_with model: @log do |f| %>
       <%= render "shared/log_form", f: f %>
       <div class="text-center mb-3">
-        <%= f.submit "ログを追加", class: "btn btn-secondary btn-lg" %>
+        <%= f.submit "ログを更新", class: "btn btn-secondary btn-lg" %>
       </div>
       <div class="text-center mb-2">
         <%= link_to "キャンセル", :back, class: "btn btn-outline-secondary btn-lg" %>
