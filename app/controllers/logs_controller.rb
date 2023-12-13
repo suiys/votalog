@@ -35,6 +35,9 @@ class LogsController < ApplicationController
   end
 
   def destroy
+    @log = Log.find(params[:id])
+    @log.destroy
+    redirect_to plant_path(@log.plant), notice: "ログを削除しました"
   end
 
   def log_params
