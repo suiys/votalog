@@ -8,6 +8,36 @@
         <% end %>
       </div>
     </header>
+    <div class="mb-6">
+      <%= month_calendar events: @plant.logs do |date, logs| %>
+        <%= date.day %>
+        <% logs.each do |log| %>
+          <div>
+            <% if log.is_watered %>
+              <%= link_to log_path(log) do %>
+                <%= image_tag "water_icon.png", class: "calendar-icons p-1", alt: "水やりアイコン" %>
+              <% end %>
+            <% end %>
+            <% if log.is_fertilized %>
+              <%= link_to log_path(log) do %>
+                <%= image_tag "fertilizer_icon.png", class: "calendar-icons p-1", alt: "肥料/栄養剤アイコン" %>
+              <% end %>
+            <% end %>
+            <% if log.is_replanted %>
+              <%= link_to log_path(log) do %>
+                <%= image_tag "pot_icon.png", class: "calendar-icons p-1", alt: "植替えアイコン" %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+      <p class="mb-2">
+        <%= image_tag "water_icon.png", class: "calendar-icons p-1", alt: "水やりアイコン" %>アイコンは水やり、
+        <%= image_tag "fertilizer_icon.png", class: "calendar-icons p-1", alt: "肥料/栄養剤アイコン" %>アイコンは肥料/栄養剤、
+        <%= image_tag "pot_icon.png", class: "calendar-icons p-1", alt: "植替えアイコン" %>アイコンは植替えを表します
+      </p>
+      <p class="pl-2">カレンダー上の各アイコンをクリックすると該当するログにジャンプして詳細を確認できます</p>
+    </div>
     <div class="row mb-6">
       <div class="col-md-4 text-center bg-light p-3">
         <p>次回水やり予定日</p>
