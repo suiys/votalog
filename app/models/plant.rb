@@ -36,4 +36,12 @@ class Plant < ApplicationRecord
       errors.add(:next_replant_day, "は今日以降の日付を選択してください")
     end
   end
+
+  def self.search_todays_schedules(user, params)
+    Plant.where("user_id = ? and next_#{params}_day = ?", user.id, Time.zone.today)
+  end
+
+  def self.search_tomorrows_schedules(user, params)
+    Plant.where("user_id = ? and next_#{params}_day = ?", user.id, Time.zone.tomorrow)
+  end
 end
