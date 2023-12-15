@@ -30,3 +30,7 @@ ja:
       user: ユーザー
       plant: 株
       log: ログ
+  simple_calendar:
+    previous: "<<先月"
+    next: "翌月>>"
+    today: "今日"

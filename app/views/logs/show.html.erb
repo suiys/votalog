@@ -68,8 +68,11 @@
       </div>
       <div class="col-md-8">
         <p class="text-center mb-0">
-          <% if @log.light_start_at || @log.light_end_at %>
-            <%= @log.light_start_at.strftime("%Y/%m/%d %H:%M") %> ~
+          <% if @log.light_start_at %>
+            <%= @log.light_start_at.strftime("%Y/%m/%d %H:%M") %>
+          <% end %>
+          ~
+          <% if @log.light_end_at %>
             <%= @log.light_end_at.strftime("%Y/%m/%d %H:%M") %>
           <% end %>
         </p>
@@ -107,6 +110,9 @@
       <div class="text-center">
         <%= link_to "ログを削除", log_path(@log), method: :delete, data: { confirm: "本当にこのログを削除してよろしいですか？"}, class: "btn btn-outline-danger" %>
       </div>
+    </div>
+    <div class="text-center">
+      <%= link_to "戻る", plant_path(@log.plant), class: "btn btn-secondary" %>
     </div>
   </div>
 </section>
