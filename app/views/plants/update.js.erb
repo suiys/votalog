@@ -1,3 +1,4 @@
+$('.modal-backdrop').remove();
 $('#nextDayModal').modal('hide');
 $('.js-next-water-day').empty();
 $('.js-next-water-day').append("<%= escape_javascript(render partial: "plants/next_water_day", locals: { plant: @plant }) %>");
