@@ -1,0 +1,13 @@
+<div>
+  <% if schedules.present? %>
+    <% schedules.each do |plant| %>
+      <p class="mb-2">
+        <%= link_to plant_path(plant) do %>
+          <%= plant.name %>
+        <% end %>
+      </p>
+    <% end %>
+  <% else %>
+    <p class="mb-2">なし</p>
+  <% end %>
+</div>
