@@ -18,8 +18,12 @@
         <%= f.submit "マイ多肉棚に追加", class: "btn btn-secondary btn-lg" %>
       </div>
       <div class="text-center mb-2">
-        <%= link_to "キャンセル", :back, class: "btn btn-outline-secondary btn-lg" %>
+        <%= link_to "キャンセル", root_path, class: "btn btn-outline-secondary btn-lg" %>
       </div>
     <% end %>
   </div>
 </section>
+
+<% if @plant.errors.any? %>
+  <%= javascript_pack_tag "new" %>
+<% end %>

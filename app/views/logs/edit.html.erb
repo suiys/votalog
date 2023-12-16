@@ -9,8 +9,12 @@
         <%= f.submit "ログを更新", class: "btn btn-secondary btn-lg" %>
       </div>
       <div class="text-center mb-2">
-        <%= link_to "キャンセル", :back, class: "btn btn-outline-secondary btn-lg" %>
+        <%= link_to "キャンセル", log_path(@log), class: "btn btn-outline-secondary btn-lg" %>
       </div>
     <% end %>
   </div>
 </section>
+
+<% if @log.errors.any? %>
+  <%= javascript_pack_tag "edit" %>
+<% end %>

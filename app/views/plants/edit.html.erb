@@ -18,8 +18,12 @@
         <%= f.submit "株情報を更新", class: "btn btn-secondary btn-lg" %>
       </div>
       <div class="text-center mb-2">
-        <%= link_to "キャンセル", :back, class: "btn btn-outline-secondary btn-lg" %>
+        <%= link_to "キャンセル", plant_path(@plant), class: "btn btn-outline-secondary btn-lg" %>
       </div>
     <% end %>
   </div>
 </section>
+
+<% if @plant.errors.any? %>
+  <%= javascript_pack_tag "edit" %>
+<% end %>

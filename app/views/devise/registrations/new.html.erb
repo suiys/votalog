@@ -4,18 +4,7 @@
       <h2>新規登録</h2>
     </header>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <div class="form-group mb-4">
-        <%= f.label :name, "ユーザー名", class: "u-font-size-90 required-column" %>
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
-        <%= render "shared/error_messages/invalid_name", resource: f.object %>
-      </div>
-
-      <div class="form-group mb-4">
-        <%= f.label :email, "メールアドレス", class: "u-font-size-90 required-column" %>
-        <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
-        <%= render "shared/error_messages/invalid_email", resource: f.object %>
-      </div>
-
+      <%= render "shared/registration_form", f: f %>
       <div class="form-group mb-4">
         <%= f.label :password, "パスワード", class: "u-font-size-90" %>
         <% if @minimum_password_length %>
@@ -26,13 +15,11 @@
         <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         <%= render "shared/error_messages/invalid_password", resource: f.object %>
       </div>
-
       <div class="form-group mb-6">
         <%= f.label :password_confirmation, "パスワード（確認用）", class: "u-font-size-90 required-column" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         <%= render "shared/error_messages/invalid_password_confirmation", resource: f.object %>
       </div>
-
       <div class="text-center mb-6">
         <%= f.submit "新規登録", class: "btn btn-secondary btn-lg" %>
       </div>
@@ -47,7 +34,6 @@
   </div>
 </section>
 
-
-
-
-
+<% if resource.errors.any? %>
+  <%= javascript_pack_tag "sign_up" %>
+<% end %>
