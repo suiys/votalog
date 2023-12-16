@@ -1,5 +1,6 @@
 class LogsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :show, :destroy]
 
   def new
     @log = Log.new
@@ -40,7 +41,16 @@ class LogsController < ApplicationController
     redirect_to plant_path(@log.plant), notice: "ログを削除しました"
   end
 
-  def log_params
-    params.require(:log).permit(:start_time, :is_watered, :is_fertilized, :is_replanted, :memo, :image, :temperature, :humidity, :light_start_at, :light_end_at, :plant_id)
-  end
+  private
+
+    def log_params
+      params.require(:log).permit(:start_time, :is_watered, :is_fertilized, :is_replanted, :memo, :image, :temperature, :humidity, :light_start_at, :light_end_at, :plant_id)
+    end
+
+    def ensure_correct_user
+      log = Log.find(params[:id])
+      unless log.user == current_user
+        redirect_to root_path, alert: "自分のお世話ログ以外の参照・編集・削除等の操作は行えません"
+      end
+    end
 end
