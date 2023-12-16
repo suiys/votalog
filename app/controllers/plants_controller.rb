@@ -45,14 +45,16 @@ class PlantsController < ApplicationController
     redirect_to root_path, notice: "#{@plant.name}を削除しました"
   end
 
-  def plant_params
-    params.require(:plant).permit(:name, :next_water_day, :next_fertilizer_day, :next_replant_day, :image)
-  end
+  private
 
-  def ensure_correct_user
-    plant = Plant.find(params[:id])
-    unless plant.user == current_user
-      redirect_to root_path, alert: "自分が所持している株以外の参照・編集・削除等の操作は行えません"
+    def plant_params
+      params.require(:plant).permit(:name, :next_water_day, :next_fertilizer_day, :next_replant_day, :image)
     end
-  end
+
+    def ensure_correct_user
+      plant = Plant.find(params[:id])
+      unless plant.user == current_user
+        redirect_to root_path, alert: "自分が所持している株以外の参照・編集・削除等の操作は行えません"
+      end
+    end
 end
