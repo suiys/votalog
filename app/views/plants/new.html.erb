@@ -23,3 +23,7 @@
     <% end %>
   </div>
 </section>
+
+<% if @plant.errors.any? %>
+  <%= javascript_pack_tag "plants/new" %>
+<% end %>
