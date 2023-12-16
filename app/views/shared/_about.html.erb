@@ -1,14 +1,40 @@
 <section class="u-content-space">
   <div class="container">
-    <div class="row">
+    <header class="mb-5">
+      <h2 class="text-center">Votalogとは</h2>
+      <h4 class="text-center">Votalogは、多肉棚の植物それぞれのお世話どきを管理してくれるツールです</h4>
+    </header>
+    <div class="row mb-3">
       <div class="col-lg-6 align-self-center mb-5 mb-lg-0 pr-lg-5">
-        <header class="mb-5">
-          <h2 class="h1">Votalogとは</h2>
-          <p class="h5">要約テキスト</p>
-        </header>
-        <p class="mb-4">ここに機能説明文</p>
+        <div class="mb-4">
+          <h5>1. 株別管理機能</h5>
+          <p>「マイ多肉棚」にあなたが管理している株を個別に登録することができます。ページは株ごとに用意され、次の水やり予定日、次の栄養剤散布予定日等を株ごとに設定できます。</p>
+        </div>
+      </div>
       <div class="col-lg-6 align-self-center">
-        <!-- <img class="img-fluid rounded" src="assets/img-temp/900x700/img1.png" alt="TODO//ここにスクショ画像"> -->
+        <%= image_tag "plants_show_sample.png", class: "img-fluid rounded img-thumbnail", alt: "株別管理ページキャプチャ" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-6 align-self-center mb-5 mb-lg-0 pr-lg-5">
+        <div class="mb-4">
+          <h5>2. ログ管理機能</h5>
+          <p>いつ、どの株にどんなお世話をしたか記録できます。株別の管理画面にあるカレンダーアイコンから過去のお世話ログをふりかえれます。</p>
+        </div>
+      </div>
+      <div class="col-lg-6 align-self-center">
+        <%= image_tag "logs_show_sample.png", class: "img-fluid rounded img-thumbnail", alt: "ログ詳細ページキャプチャ" %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-lg-6 align-self-center mb-5 mb-lg-0 pr-lg-5">
+        <div class="mb-4">
+          <h5>3. 一括管理機能</h5>
+          <p>今日のお世話予定、翌日のお世話予定を一括して確認できます。お世話が完了した株は一括管理画面に表示されている株の名前を選んで次回のお世話予定日を設定することで、設定漏れを防げます。</p>
+        </div>
+      </div>
+      <div class="col-lg-6 align-self-center">
+        <%= image_tag "home_index_sample.png", class: "img-fluid rounded img-thumbnail", alt: "一括管理ページキャプチャ" %>
       </div>
     </div>
   </div>
