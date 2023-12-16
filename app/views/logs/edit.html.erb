@@ -14,3 +14,7 @@
     <% end %>
   </div>
 </section>
+
+<% if @log.errors.any? %>
+  <%= javascript_pack_tag "edit" %>
+<% end %>
