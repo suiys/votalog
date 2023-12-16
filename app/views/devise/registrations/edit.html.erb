@@ -47,3 +47,7 @@
     <% end %>
   </div>
 </section>
+
+<% if resource.errors.any? %>
+  <%= javascript_pack_tag "edit" %>
+<% end %>
