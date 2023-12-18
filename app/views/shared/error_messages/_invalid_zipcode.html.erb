@@ -1,0 +1,5 @@
+<% if resource.errors.include?(:zipcode) %>
+  <div class="invalid-input">
+    <%= resource.errors.full_messages_for(:zipcode).first %>
+  </div>
+<% end %>

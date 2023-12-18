@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(current_user.id)
   end
 
   def update

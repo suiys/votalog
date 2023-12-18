@@ -1,0 +1,29 @@
+<% content_for :html_title, "ユーザー設定編集" %>
+
+<section class="u-content-space">
+  <div class="container">
+    <header class="w-md50 mx-auto text-center mb-6">
+      <h2>ユーザー設定編集</h2>
+    </header>
+    <%= form_with model: @user do |f| %>
+      <div class="form-group mb-6">
+        <%= f.label :zipcode, class: "u-font-size-90" %>
+        <%= f.number_field :zipcode, autofocus: true, placeholder: "0010010", class: "form-control" %>
+        <%= render "shared/error_messages/invalid_zipcode", resource: f.object %>
+      </div>
+      <div class="form-group mb-6">
+        <%= f.label :current_password, class: "u-font-size-90" %> <span class="u-font-size-90">(変更には現在のパスワードが必要です)</span>
+        <%= f.password_field :current_password, class: "form-control" %>
+        <%= render "shared/error_messages/invalid_current_password", resource: f.object %>
+      </div>
+      <div class="text-center mb-6">
+        <%= f.submit "変更を保存", class: "btn btn-secondary btn-lg" %>
+        <%= link_to "キャンセル", users_settings_path, class: "btn btn-outline-secondary btn-lg" %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<% if @user.errors.any? %>
+  <%= javascript_pack_tag "edit" %>
+<% end %>
