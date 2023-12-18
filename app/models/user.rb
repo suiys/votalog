@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :name, presence: true
+  validates :zipcode, length: { is: 7 }, allow_nil: true
 
   has_many :plants, dependent: :destroy
   has_many :logs, dependent: :destroy
