@@ -32,6 +32,7 @@ gem 'devise'
 gem 'rails-i18n'
 gem 'simple_calendar'
 gem 'dotenv-rails'
+gem 'httpclient'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
