@@ -4,6 +4,16 @@ class LogsController < ApplicationController
 
   def new
     @log = Log.new
+    @user = current_user
+    if @user.latitude && @user.longitude
+      @temperature, @humidity = Log.get_weather_info(@user.latitude, @user.longitude)
+      if @temperature.nil? || @humidity.nil?
+        flash.now[:alert] = "気象情報の取得に失敗しました"
+      end
+    else
+      @temperature = nil
+      @humidity = nil
+    end
   end
 
   def create

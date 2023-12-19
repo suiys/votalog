@@ -9,12 +9,12 @@
       <%= render "shared/log_form", f: f %>
       <div class="form-group mb-4">
         <%= f.label :temperature, class: "u-font-size-90" %>
-        <%= f.number_field :temperature, step: "0.1", placeholder: "12.3", class: "form-control" %>
+        <%= f.number_field :temperature, step: "0.1", placeholder: "12.3", value: @temperature, class: "form-control" %>
         <%= render "shared/error_messages/invalid_temperature", resource: f.object %>
       </div>
       <div class="form-group mb-6">
         <%= f.label :humidity, class: "u-font-size-90" %>
-        <%= f.number_field :humidity, step: "0.1", placeholder: "65.4", class: "form-control" %>
+        <%= f.number_field :humidity, step: "0.1", placeholder: "65.4", value: @humidity, class: "form-control" %>
         <%= render "shared/error_messages/invalid_humidity", resource: f.object %>
       </div>
       <div class="text-center mb-3">

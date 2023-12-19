@@ -1,4 +1,5 @@
 class Log < ApplicationRecord
+  require 'httpclient'
   validates :start_time, presence: true
   validates :memo, length: { maximum: 300 }
   validates :temperature, numericality: true, allow_nil: true
@@ -24,5 +25,21 @@ class Log < ApplicationRecord
     if light_end_at.present? && light_end_at < light_start_at
       errors.add(:light_end_at, "は点灯時刻よりも後の時刻を入力してください")
     end
+  end
+
+  def self.get_weather_info(latitude, longitude)
+    client = HTTPClient.new
+    url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude.to_s + "&lon=" + longitude.to_s + "&units=metric&appid="+ ENV['OPEN_WEATHER_API_KEY']
+    response = client.get(url)
+    res = JSON.parse(response.body)
+    begin
+      temperature = res["main"]["temp"]
+      humidity = res["main"]["humidity"]
+    rescue => e
+      logger.error("気象情報の取得に失敗しました。エラー: #{e}")
+      temperature = nil
+      humidity = nil
+    end
+    return temperature, humidity
   end
 end
