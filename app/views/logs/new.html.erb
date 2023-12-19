@@ -7,6 +7,16 @@
     </header>
     <%= form_with model: @log do |f| %>
       <%= render "shared/log_form", f: f %>
+      <div class="form-group mb-4">
+        <%= f.label :temperature, class: "u-font-size-90" %>
+        <%= f.number_field :temperature, step: "0.1", placeholder: "12.3", class: "form-control" %>
+        <%= render "shared/error_messages/invalid_temperature", resource: f.object %>
+      </div>
+      <div class="form-group mb-6">
+        <%= f.label :humidity, class: "u-font-size-90" %>
+        <%= f.number_field :humidity, step: "0.1", placeholder: "65.4", class: "form-control" %>
+        <%= render "shared/error_messages/invalid_humidity", resource: f.object %>
+      </div>
       <div class="text-center mb-3">
         <%= f.submit "ログを追加", class: "btn btn-secondary btn-lg" %>
       </div>
