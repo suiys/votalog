@@ -38,7 +38,7 @@ class LogsController < ApplicationController
   def update
     @log = Log.find(params[:id])
     if @log.update(log_params)
-      redirect_to plant_path(@log.plant), notice: "ログを更新しました"
+      redirect_to log_path(@log), notice: "ログを更新しました"
     else
       flash.now[:alert] = "ログの更新に失敗しました"
       render "edit"
