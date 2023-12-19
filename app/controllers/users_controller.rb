@@ -8,6 +8,10 @@ class UsersController < ApplicationController
 
   def settings
     @user = User.find(current_user.id)
+    if @user.zipcode
+      format_zipcode = format("%07d", @user.zipcode).to_s
+      @zipcode = format_zipcode.slice(0..2) + " - " + format_zipcode.slice(3..6)
+    end
   end
 
   def edit

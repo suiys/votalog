@@ -11,7 +11,9 @@
       </div>
       <div class="col-md-6">
         <p class="text-center mb-0">
-          <%= @user.zipcode %>
+          <% if @user.zipcode %>
+            〒 <%= @zipcode %>
+          <% end %>
         </p>
       </div>
     </div>
