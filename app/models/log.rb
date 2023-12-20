@@ -27,7 +27,7 @@ class Log < ApplicationRecord
     end
   end
 
-  def self.get_weather_info(latitude, longitude)
+  def get_weather_info(latitude, longitude)
     client = HTTPClient.new
     url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude.to_s + "&lon=" + longitude.to_s + "&units=metric&appid=" + ENV['OPEN_WEATHER_API_KEY']
     response = client.get(url)
