@@ -17,6 +17,11 @@ class User < ApplicationRecord
     end
   end
 
+  def format_zipcode(zipcode)
+    seven_digits_zipcode = format("%07d", zipcode).to_s
+    formatted_zipcode = seven_digits_zipcode.slice(0..2) + " - " + seven_digits_zipcode.slice(3..6)
+  end
+
   def get_users_location(zipcode)
     client = HTTPClient.new
     url = "https://geoapi.heartrails.com/api/json?method=searchByPostal&postal=" + zipcode
