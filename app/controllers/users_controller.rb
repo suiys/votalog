@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if params[:user][:zipcode].present?
-      @user.latitude, @user.longitude = User.get_users_location(params[:user][:zipcode])
+      @user.latitude, @user.longitude = @user.get_users_location(params[:user][:zipcode])
       if @user.latitude && @user.longitude
         if @user.update(user_params)
           redirect_to users_settings_path, notice: "ユーザー設定を更新しました"

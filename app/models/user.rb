@@ -17,7 +17,7 @@ class User < ApplicationRecord
     end
   end
 
-  def self.get_users_location(zipcode)
+  def get_users_location(zipcode)
     client = HTTPClient.new
     url = "https://geoapi.heartrails.com/api/json?method=searchByPostal&postal=" + zipcode
     response = client.get(url)
