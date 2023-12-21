@@ -3,7 +3,7 @@ class Log < ApplicationRecord
   validates :start_time, presence: true
   validates :memo, length: { maximum: 300 }
   validates :temperature, numericality: true, allow_nil: true
-  validates :humidity, numericality: { in: 0..100 }, allow_nil: true
+  validates :humidity, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, allow_nil: true
   validate :is_file_type_valid?
   validate :is_light_end_at_after_light_start_at?
 
@@ -15,7 +15,7 @@ class Log < ApplicationRecord
   def is_file_type_valid?
     return unless image.attached?
 
-    valid_file_types = ["image/png", "image/jpg", "image/gif"]
+    valid_file_types = ["image/png", "image/jpg", "image/jpeg", "image/gif"]
     unless valid_file_types.include?(image.blob.content_type)
       errors.add(:image, "には拡張子が.png, .jpg, .gifのいずれかのファイルを添付してください")
     end
