@@ -10,7 +10,7 @@ class Plant < ApplicationRecord
   def is_file_type_valid?
     return unless image.attached?
 
-    valid_file_types = ["image/png", "image/jpg", "image/gif"]
+    valid_file_types = ["image/png", "image/jpg", "image/jpeg", "image/gif"]
     unless valid_file_types.include?(image.blob.content_type)
       errors.add(:image, "には拡張子が.png, .jpg, .gifのいずれかのファイルを添付してください")
     end
