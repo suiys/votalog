@@ -80,7 +80,7 @@ RSpec.describe User, type: :model do
   end
   describe "#get_users_location" do
     it "実在する郵便番号を含むGETリクエストを発行してheartrails APIを叩いた際に、郵便番号に対応した緯度と経度がレスポンスに含まれていること" do
-      expect(user.get_users_location("6120051")).to match_array ["34.948035", "135.767568"]
+      expect(user.get_users_location("6120051")).to eq ["34.948035", "135.767568"]
     end
 
     it "実在しない郵便番号を含むGETリクエストを発行してheartrails APIを叩いた際に、緯度と経度がnilになっていること" do
