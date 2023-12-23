@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :plant do
-    name { "testplant1" }
+    sequence(:name) { |n| "testplant#{n}" }
     association :user
   end
 
   factory :plant_with_png_image, class: Plant do
-    name { "testplant2" }
+    name { "testplant_with_png" }
     association :user
 
     after(:build) do |plant|
@@ -18,7 +18,7 @@ FactoryBot.define do
   end
 
   factory :plant_with_jpg_image, class: Plant do
-    name { "testplant3" }
+    name { "testplant_with_jpg" }
     association :user
 
     after(:build) do |plant|
@@ -31,7 +31,7 @@ FactoryBot.define do
   end
 
   factory :plant_with_gif_image, class: Plant do
-    name { "testplant4" }
+    name { "testplant_with_gif" }
     association :user
 
     after(:build) do |plant|
@@ -44,7 +44,7 @@ FactoryBot.define do
   end
 
   factory :plant_with_text, class: Plant do
-    name { "testplant5" }
+    name { "testplant_with_text" }
     association :user
 
     after(:build) do |plant|
