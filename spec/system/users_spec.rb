@@ -175,6 +175,7 @@ RSpec.describe "Users", type: :system do
       end
     end
   end
+
   describe "ユーザー設定編集画面(/users/settings/edit)のテスト" do
     before do
       login_as(user_with_zipcode, scope: :user)
@@ -200,6 +201,172 @@ RSpec.describe "Users", type: :system do
       it "ユーザー設定変更画面に遷移すること" do
         click_on "キャンセル"
         expect(current_path).to eq users_settings_path
+      end
+    end
+  end
+
+  describe "未ログイン時のナビゲーションバー部分のテスト" do
+    before do
+      visit root_path
+    end
+
+    it "ログインリンクが存在し、押下するとログイン画面に遷移すること" do
+      within ".navbar" do
+        expect(page).to have_content "ログイン"
+        click_on "ログイン"
+        expect(current_path).to eq new_user_session_path
+      end
+    end
+    it "新規登録リンクが存在し、押下すると新規登録画面に遷移すること" do
+      within ".navbar" do
+        expect(page).to have_content "新規登録"
+        click_on "新規登録"
+        expect(current_path).to eq new_user_registration_path
+      end
+    end
+    it "ゲストログインリンクが存在し、押下するとトップページの表示内容が切り替わること" do
+      within ".navbar" do
+        expect(page).to have_content "ゲストログイン"
+        click_on "ゲストログイン"
+      end
+      expect(page).not_to have_content "Votalogとは"
+      expect(page).to have_content "マイ多肉棚"
+      expect(page).to have_content "ゲストユーザーとしてログインしました"
+    end
+    it "ロゴアイコンが存在すること" do
+      within ".navbar" do
+        expect(page).to have_selector ".logo-icon"
+      end
+    end
+    it "ドロップダウンメニューが存在しないこと" do
+      within ".navbar" do
+        expect(page).not_to have_selector "#navbarDropdown"
+      end
+    end
+  end
+
+  describe "ログイン時のナビゲーションバー部分のテスト" do
+    before do
+      login_as(user, scope: :user)
+      visit root_path
+    end
+
+    it "ロゴアイコンが存在すること" do
+      within ".navbar" do
+        expect(page).to have_selector ".logo-icon"
+      end
+    end
+    it "ログインリンクが存在しないこと" do
+      within ".navbar" do
+        expect(page).not_to have_content "ログイン"
+      end
+    end
+    it "新規登録リンクが存在しないこと" do
+      within ".navbar" do
+        expect(page).not_to have_content "新規登録"
+      end
+    end
+    it "ゲストログインリンクが存在しないこと" do
+      within ".navbar" do
+        expect(page).not_to have_content "ゲストログイン"
+      end
+    end
+    it "ドロップダウンメニューが存在すること" do
+      within ".navbar" do
+        expect(page).to have_content user.name
+        expect(page).to have_content "アカウント"
+        expect(page).to have_content "設定"
+        expect(page).to have_content "ログアウト"
+      end
+    end
+    it "ドロップダウンメニューのリンクからそれぞれのページへ遷移できること" do
+      within ".navbar" do
+        click_on "アカウント"
+        expect(current_path).to eq users_account_path
+        click_on "設定"
+        expect(current_path).to eq users_settings_path
+        click_on "ログアウト"
+        expect(current_path).to eq root_path
+      end
+      expect(page).to have_content "ログアウトしました"
+    end
+  end
+
+  describe "未ログイン時のトップページのテスト" do
+    before do
+      visit root_path
+    end
+
+    it "ファーストビューが表示されること" do
+      expect(page).to have_selector ".firstview-wrapper"
+    end
+    it "機能説明セクションが表示されること" do
+      expect(page).to have_selector ".about-wrapper"
+    end
+    context "ファーストビューの新規登録はこちらボタンを押下した場合" do
+      it "新規登録画面へ遷移すること" do
+        click_on "新規登録はこちら"
+        expect(current_path).to eq new_user_registration_path
+      end
+    end
+    context "ファーストビューのログインはこちらボタンを押下した場合" do
+      it "ログイン画面へ遷移すること" do
+        click_on "ログインはこちら"
+        expect(current_path).to eq new_user_session_path
+      end
+    end
+    context "ファーストビューのゲストログインはこちらボタンを押下した場合" do
+      it "トップページの表示内容が切り替わること" do
+        click_on "ゲストログインはこちら"
+        expect(page).not_to have_content "Votalogとは"
+        expect(page).to have_content "マイ多肉棚"
+        expect(page).to have_content "ゲストユーザーとしてログインしました"
+      end
+    end
+  end
+
+  describe "ログイン時のトップページのテスト" do
+    let!(:plant1) { create(:plant, next_water_day: Time.zone.today, next_replant_day: Time.zone.tomorrow, user: user) }
+    let!(:plant2) { create(:plant, next_fertilizer_day: Time.zone.tomorrow, next_replant_day: Time.zone.tomorrow, user: user) }
+
+    before do
+      login_as(user, scope: :user)
+      visit root_path
+    end
+    it "今日水やり予定の株に名称が表示され、押下すると株詳細画面に遷移すること" do
+      within ".todays-water-schedule" do
+        expect(page).to have_content plant1.name
+        click_on plant1.name
+        expect(current_path).to eq plant_path(plant1)
+      end
+    end
+    it "明日肥料/栄養剤散布予定の株に名称が表示され、押下すると株詳細画面に遷移すること" do
+      within ".tomorrows-fertilizer-schedule" do
+        expect(page).to have_content plant2.name
+        click_on plant2.name
+        expect(current_path).to eq plant_path(plant2)
+      end
+    end
+    it "明日植替え予定の株に名称が表示され、押下すると株詳細画面に遷移すること" do
+      within ".tomorrows-replant-schedule" do
+        expect(page).to have_content plant1.name
+        expect(page).to have_content plant2.name
+        click_on plant1.name
+        expect(current_path).to eq plant_path(plant1)
+        visit root_path
+        click_on plant2.name
+        expect(current_path).to eq plant_path(plant2)
+      end
+    end
+    it "お世話予定の株がない項目はなしと表示されていること" do
+      within ".todays-fertilizer-schedule" do
+        expect(page).to have_content "なし"
+      end
+      within ".todays-replant-schedule" do
+        expect(page).to have_content "なし"
+      end
+      within ".tomorrows-water-schedule" do
+        expect(page).to have_content "なし"
       end
     end
   end
