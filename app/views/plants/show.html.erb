@@ -41,14 +41,14 @@
       <p class="pl-2">カレンダー上の各アイコンをクリックすると該当するログにジャンプして詳細を確認できます</p>
     </div>
     <div class="row mb-6">
-      <div class="col-md-4 text-center bg-light p-3">
+      <div class="col-md-4 text-center bg-light p-3 next-water-schedule">
         <p>次回水やり予定日</p>
         <hr class="mb-6">
         <div class="js-next-water-day">
           <%= render "plants/next_water_day", plant: @plant %>
         </div>
       </div>
-      <div class="col-md-4 text-center bg-light p-3">
+      <div class="col-md-4 text-center bg-light p-3 next-fertilizer-schedule">
         <p>次回肥料/栄養剤散布予定日</p>
         <hr class="mb-6">
         <div class="js-next-fertilizer-day">
@@ -60,7 +60,7 @@
           <% end %>
         </div>
       </div>
-      <div class="col-md-4 text-center bg-light p-3">
+      <div class="col-md-4 text-center bg-light p-3 next-replant-schedule">
         <p>次回植替え予定日</p>
         <hr class="mb-6">
         <div class="js-next-replant-day">
