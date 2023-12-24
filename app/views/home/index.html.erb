@@ -5,34 +5,34 @@
         <h2 class="mb-0">お世話スケジュール</h2>
       </header>
       <div class="row mb-6">
-        <div class="col-md-4 text-center bg-light p-3">
+        <div class="col-md-4 text-center bg-light p-3 todays-water-schedule">
           <p>今日水やり予定の株</p>
           <hr class="mb-4">
           <%= render "shared/schedule_list", schedules: @todays_water_scheduled_plants %>
         </div>
-        <div class="col-md-4 text-center bg-light p-3">
+        <div class="col-md-4 text-center bg-light p-3 todays-fertilizer-schedule">
           <p>今日肥料/栄養剤散布予定の株</p>
           <hr class="mb-4">
           <%= render "shared/schedule_list", schedules: @todays_fertilizer_scheduled_plants %>
         </div>
-        <div class="col-md-4 text-center bg-light p-3">
+        <div class="col-md-4 text-center bg-light p-3 todays-replant-schedule">
           <p>今日植替え予定の株</p>
           <hr class="mb-4">
           <%= render "shared/schedule_list", schedules: @todays_replant_scheduled_plants %>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4 text-center bg-light p-3">
+        <div class="col-md-4 text-center bg-light p-3 tomorrows-water-schedule">
           <p>明日水やり予定の株</p>
           <hr class="mb-4">
           <%= render "shared/schedule_list", schedules: @tomorrows_water_scheduled_plants %>
         </div>
-        <div class="col-md-4 text-center bg-light p-3">
+        <div class="col-md-4 text-center bg-light p-3 tomorrows-fertilizer-schedule">
           <p>明日肥料/栄養剤散布予定の株</p>
           <hr class="mb-4">
           <%= render "shared/schedule_list", schedules: @tomorrows_fertilizer_scheduled_plants %>
         </div>
-        <div class="col-md-4 text-center bg-light p-3">
+        <div class="col-md-4 text-center bg-light p-3 tomorrows-replant-schedule">
           <p>明日植替え予定の株</p>
           <hr class="mb-4">
           <%= render "shared/schedule_list", schedules: @tomorrows_replant_scheduled_plants %>

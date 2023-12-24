@@ -27,10 +27,10 @@
       </div>
     <% end %>
     <hr class="mb-4">
-    <p class="mb-2 pl-2">既にアカウントをお持ちの場合は、
+    <p class="mb-2 pl-2 login-caption">既にアカウントをお持ちの場合は、
       <%= link_to "ログイン", new_user_session_path %>
     </p>
-    <p class="mb-2 pl-2">アカウントを作成せずご利用になるには、
+    <p class="mb-2 pl-2 guest-login-caption">アカウントを作成せずご利用になるには、
       <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %>
     </p>
   </div>

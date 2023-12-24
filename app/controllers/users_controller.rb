@@ -9,8 +9,7 @@ class UsersController < ApplicationController
   def settings
     @user = User.find(current_user.id)
     if @user.zipcode
-      format_zipcode = format("%07d", @user.zipcode).to_s
-      @zipcode = format_zipcode.slice(0..2) + " - " + format_zipcode.slice(3..6)
+      @zipcode = @user.format_zipcode(@user.zipcode)
     end
   end
 
@@ -21,7 +20,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if params[:user][:zipcode].present?
-      @user.latitude, @user.longitude = User.get_users_location(params[:user][:zipcode])
+      @user.latitude, @user.longitude = @user.get_users_location(params[:user][:zipcode])
       if @user.latitude && @user.longitude
         if @user.update(user_params)
           redirect_to users_settings_path, notice: "ユーザー設定を更新しました"
