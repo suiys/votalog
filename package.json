@@ -11,9 +11,6 @@
     "webpack-cli": "^3.3.12"
   },
   "version": "0.1.0",
-  "engines": {
-    "node": "16.20.1"
-  },
   "devDependencies": {
     "@babel/plugin-transform-private-methods": "^7.23.3",
     "@babel/plugin-transform-private-property-in-object": "^7.23.4",
