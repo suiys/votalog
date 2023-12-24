@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Plant, type: :model do
+  let(:user) { create(:user) }
+  let(:another_user) { create(:user) }
+
   describe "バリデーション関連のテスト" do
     let(:plant) { build(:plant) }
     let(:plant_without_name) { build(:plant, name: nil) }
@@ -37,8 +40,6 @@ RSpec.describe Plant, type: :model do
   end
 
   describe ".search_todays_schedules" do
-    let(:user) { create(:user) }
-    let(:another_user) { create(:user) }
     let!(:target_plant_to_water_today) { create_list(:plant, 2, next_water_day: Time.zone.today, user: user) }
     let!(:not_target_user_plant_to_water_today) { create(:plant, next_water_day: Time.zone.today, user: another_user) }
     let!(:not_target_date_plant_to_water) { create(:plant, next_water_day: Time.zone.tomorrow, user: user) }
@@ -51,8 +52,6 @@ RSpec.describe Plant, type: :model do
   end
 
   describe ".search_tomorrows_schedules" do
-    let(:user) { create(:user) }
-    let(:another_user) { create(:user) }
     let!(:target_plant_to_water_tomorrow) { create_list(:plant, 2, next_water_day: Time.zone.tomorrow, user: user) }
     let!(:not_target_user_plant_to_water_tomorrow) { create(:plant, next_water_day: Time.zone.tomorrow, user: another_user) }
     let!(:not_target_date_plant_to_water) { create(:plant, next_water_day: Time.zone.today, user: user) }
