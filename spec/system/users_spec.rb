@@ -111,17 +111,20 @@ RSpec.describe "Users", type: :system do
       login_as(user, scope: :user)
       visit users_account_path
     end
+
     it "ユーザー名、メールアドレス、パスワードの項目が表示されていること" do
       expect(page).to have_content user.name
       expect(page).to have_content user.email
       expect(page).to have_content "******"
     end
+
     context "登録情報の変更ボタンを押下した場合" do
       it "アカウント情報編集画面に遷移すること" do
         click_on "登録情報の変更"
         expect(current_path).to eq edit_user_registration_path
       end
     end
+
     context "アカウント削除ボタンを押下した場合", js: true do
       it "confirmダイアログでOKすると、ログアウトした状態でトップページに遷移しフラッシュメッセージが表示されること" do
         page.accept_confirm("本当にこのアカウントを削除してよろしいですか？") do
@@ -139,10 +142,12 @@ RSpec.describe "Users", type: :system do
       login_as(user, scope: :user)
       visit edit_user_registration_path
     end
+
     it "必須項目のユーザー名とメールアドレスがフォームに表示されていること" do
       expect(page).to have_field "ユーザー名", with: user.name
       expect(page).to have_field "メールアドレス", with: user.email
     end
+
     context "アカウント情報を編集し、変更の保存に成功した場合" do
       it "アカウント情報確認画面に遷移し、更新成功のフラッシュメッセージが表示されること" do
         fill_in "ユーザー名", with: "testuser"
@@ -152,6 +157,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "アカウント情報を変更しました"
       end
     end
+
     context "アカウント情報を編集したが、変更の保存に失敗した場合" do
       it "アカウント情報編集画面のまま、バリデーションエラーメッセージが表示されること" do
         fill_in "ユーザー名", with: "testuser"
@@ -160,6 +166,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "変更には現在のパスワードが必要です"
       end
     end
+
     context "キャンセルボタンを押下した場合" do
       it "アカウント情報確認画面に遷移すること" do
         click_on "キャンセル"
@@ -173,9 +180,11 @@ RSpec.describe "Users", type: :system do
       login_as(user_with_zipcode, scope: :user)
       visit users_settings_path
     end
+
     it "郵便番号が表示されていること" do
       expect(page).to have_content "612 - 0051"
     end
+
     context "設定の変更ボタンを押下した場合" do
       it "ユーザー設定編集画面に遷移すること" do
         click_on "設定の変更"
@@ -189,6 +198,7 @@ RSpec.describe "Users", type: :system do
       login_as(user_with_zipcode, scope: :user)
       visit users_settings_edit_path
     end
+
     context "郵便番号を変更し、変更の保存に成功した場合" do
       it "ユーザー設定画面に遷移し、更新成功のフラッシュメッセージが表示されること" do
         fill_in "郵便番号", with: 6120054
@@ -197,6 +207,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "ユーザー設定を更新しました"
       end
     end
+
     context "郵便番号を変更したが、変更の保存に失敗した場合" do
       it "ユーザー設定編集画面のまま、更新失敗のフラッシュメッセージが表示されること" do
         fill_in "郵便番号", with: 1234567
@@ -205,6 +216,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "位置情報の取得に失敗しました。郵便番号が誤っていないか確認してください"
       end
     end
+
     context "キャンセルボタンを押下した場合" do
       it "ユーザー設定変更画面に遷移すること" do
         click_on "キャンセル"
@@ -225,6 +237,7 @@ RSpec.describe "Users", type: :system do
         expect(current_path).to eq new_user_session_path
       end
     end
+
     it "新規登録リンクが存在し、押下すると新規登録画面に遷移すること" do
       within ".navbar" do
         expect(page).to have_content "新規登録"
@@ -232,6 +245,7 @@ RSpec.describe "Users", type: :system do
         expect(current_path).to eq new_user_registration_path
       end
     end
+
     it "ゲストログインリンクが存在し、押下するとトップページの表示内容が切り替わること" do
       within ".navbar" do
         expect(page).to have_content "ゲストログイン"
@@ -241,11 +255,13 @@ RSpec.describe "Users", type: :system do
       expect(page).to have_content "マイ多肉棚"
       expect(page).to have_content "ゲストユーザーとしてログインしました"
     end
+
     it "ロゴアイコンが存在すること" do
       within ".navbar" do
         expect(page).to have_selector ".logo-icon"
       end
     end
+
     it "ドロップダウンメニューが存在しないこと" do
       within ".navbar" do
         expect(page).not_to have_selector "#navbarDropdown"
@@ -264,21 +280,25 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_selector ".logo-icon"
       end
     end
+
     it "ログインリンクが存在しないこと" do
       within ".navbar" do
         expect(page).not_to have_content "ログイン"
       end
     end
+
     it "新規登録リンクが存在しないこと" do
       within ".navbar" do
         expect(page).not_to have_content "新規登録"
       end
     end
+
     it "ゲストログインリンクが存在しないこと" do
       within ".navbar" do
         expect(page).not_to have_content "ゲストログイン"
       end
     end
+
     it "ドロップダウンメニューが存在すること" do
       within ".navbar" do
         expect(page).to have_content user.name
@@ -287,6 +307,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "ログアウト"
       end
     end
+
     it "ドロップダウンメニューのリンクからそれぞれのページへ遷移できること" do
       within ".navbar" do
         click_on "アカウント"
@@ -308,21 +329,25 @@ RSpec.describe "Users", type: :system do
     it "ファーストビューが表示されること" do
       expect(page).to have_selector ".firstview-wrapper"
     end
+
     it "機能説明セクションが表示されること" do
       expect(page).to have_selector ".about-wrapper"
     end
+
     context "ファーストビューの新規登録はこちらボタンを押下した場合" do
       it "新規登録画面へ遷移すること" do
         click_on "新規登録はこちら"
         expect(current_path).to eq new_user_registration_path
       end
     end
+
     context "ファーストビューのログインはこちらボタンを押下した場合" do
       it "ログイン画面へ遷移すること" do
         click_on "ログインはこちら"
         expect(current_path).to eq new_user_session_path
       end
     end
+
     context "ファーストビューのゲストログインはこちらボタンを押下した場合" do
       it "トップページの表示内容が切り替わること" do
         click_on "ゲストログインはこちら"
@@ -341,6 +366,7 @@ RSpec.describe "Users", type: :system do
       login_as(user, scope: :user)
       visit root_path
     end
+
     it "今日水やり予定の株に名称が表示され、押下すると株詳細画面に遷移すること" do
       within ".todays-water-schedule" do
         expect(page).to have_content plant1.name
@@ -348,6 +374,7 @@ RSpec.describe "Users", type: :system do
         expect(current_path).to eq plant_path(plant1)
       end
     end
+
     it "明日肥料/栄養剤散布予定の株に名称が表示され、押下すると株詳細画面に遷移すること" do
       within ".tomorrows-fertilizer-schedule" do
         expect(page).to have_content plant2.name
@@ -355,6 +382,7 @@ RSpec.describe "Users", type: :system do
         expect(current_path).to eq plant_path(plant2)
       end
     end
+
     it "明日植替え予定の株に名称が表示され、押下すると株詳細画面に遷移すること" do
       within ".tomorrows-replant-schedule" do
         expect(page).to have_content plant1.name
@@ -366,6 +394,7 @@ RSpec.describe "Users", type: :system do
         expect(current_path).to eq plant_path(plant2)
       end
     end
+
     it "お世話予定の株がない項目はなしと表示されていること" do
       within ".todays-fertilizer-schedule" do
         expect(page).to have_content "なし"
@@ -378,4 +407,6 @@ RSpec.describe "Users", type: :system do
       end
     end
   end
+
+  describe ""
 end
