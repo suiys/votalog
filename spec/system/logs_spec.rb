@@ -129,7 +129,7 @@ RSpec.describe "Logs", type: :system do
     end
 
     it "当月のカレンダーが表示されること" do
-      this_month = Time.zone.now.strftime("%Y 年 %m月")
+      this_month = Time.zone.now.strftime("%Y 年 %-m月")
       within ".simple-calendar" do
         expect(page).to have_content this_month
       end
@@ -151,9 +151,9 @@ RSpec.describe "Logs", type: :system do
     context "カレンダーの先月ボタンを押下した場合" do
       it "先月のカレンダーが表示されること" do
         click_on "先月"
-        last_month = Time.zone.now.prev_month
+        last_month = Time.zone.now.prev_month.strftime("%Y 年 %-m月")
         within ".simple-calendar" do
-          expect(page).to have_content last_month.strftime("%Y 年 %-m月")
+          expect(page).to have_content last_month
         end
       end
     end
@@ -161,9 +161,9 @@ RSpec.describe "Logs", type: :system do
     context "カレンダーの翌月ボタンを押下した場合" do
       it "翌月のカレンダーが表示されること" do
         click_on "翌月"
-        next_month = Time.zone.now.next_month
+        next_month = Time.zone.now.next_month.strftime("%Y 年 %-m月")
         within ".simple-calendar" do
-          expect(page).to have_content next_month.strftime("%Y 年 %-m月")
+          expect(page).to have_content next_month
         end
       end
     end
