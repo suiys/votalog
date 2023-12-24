@@ -8,6 +8,7 @@ RSpec.describe "Users", type: :system do
     before do
       visit new_user_session_path
     end
+
     context "正しいメールアドレスとパスワードを入力した場合" do
       it "トップページに遷移し、ログイン成功のフラッシュメッセージが表示されること" do
         fill_in "メールアドレス", with: user.email
@@ -19,6 +20,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "ログインしました"
       end
     end
+
     context "正しいメールアドレスとパスワードを入力しなかった場合" do
       it "ログイン画面のまま、警告のフラッシュメッセージが表示されること" do
         fill_in "メールアドレス", with: ""
@@ -30,6 +32,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "メールアドレスまたはパスワードが違います"
       end
     end
+
     context "新規作成リンクを押下した場合" do
       it "アカウント新規作成画面に遷移すること" do
         within ".caption" do
@@ -38,6 +41,7 @@ RSpec.describe "Users", type: :system do
         expect(current_path).to eq new_user_registration_path
       end
     end
+
     context "ゲストログインリンクを押下した場合" do
       it "トップページに遷移し、ログイン成功のフラッシュメッセージが表示されること" do
         within ".caption" do
@@ -53,6 +57,7 @@ RSpec.describe "Users", type: :system do
     before do
       visit new_user_registration_path
     end
+
     context "有効なユーザー名、メールアドレス、パスワードを入力した場合" do
       it "トップページに遷移し、新規登録成功のフラッシュメッセージが表示されること" do
         fill_in "ユーザー名", with: "testuser"
@@ -66,6 +71,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "アカウント登録が完了しました"
       end
     end
+
     context "既に存在するユーザーのアカウントを新規登録しようとした場合" do
       it "新規作成画面のまま、バリデーションエラーメッセージが表示されること" do
         fill_in "ユーザー名", with: user.name
@@ -79,6 +85,7 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content "メールアドレスはすでに存在します"
       end
     end
+
     context "ログインリンクを押下した場合" do
       it "ログイン画面に遷移すること" do
         within ".login-caption" do
@@ -87,6 +94,7 @@ RSpec.describe "Users", type: :system do
         expect(current_path).to eq new_user_session_path
       end
     end
+
     context "ゲストログインリンクを押下した場合" do
       it "トップページに遷移し、ログイン成功のフラッシュメッセージが表示されること" do
         within ".guest-login-caption" do

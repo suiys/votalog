@@ -86,6 +86,7 @@ RSpec.describe Log, type: :model do
       expect(log_with_light_end_at_before_start.errors[:light_end_at]).to include "は点灯時刻よりも後の時刻を入力してください"
     end
   end
+
   describe "#get_weather_info" do
     let(:user) { create(:user, latitude: 34.948035, longitude: 135.767568) }
     let(:log) { create(:log, user: user) }

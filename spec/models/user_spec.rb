@@ -55,12 +55,14 @@ RSpec.describe User, type: :model do
       expect(user_zipcode_with_point.errors[:zipcode]).to include "は整数で入力してください"
     end
   end
+
   describe ".find_or_create_guest_user" do
     it "ユーザー名が「ゲストユーザー」のゲストアカウントが作成されていること" do
       guest_user = User.find_or_create_guest_user
       expect(guest_user.name).to eq "ゲストユーザー"
     end
   end
+
   describe "#format_zipcode" do
     let(:user_with_5_digits_zipcode) { create(:user, zipcode: 12345) }
     let(:user_with_6_digits_zipcode) { create(:user, zipcode: 123456) }
@@ -78,6 +80,7 @@ RSpec.describe User, type: :model do
       expect(user_with_7_digits_zipcode.format_zipcode(user_with_7_digits_zipcode.zipcode)).to eq "123 - 4567"
     end
   end
+
   describe "#get_users_location" do
     it "実在する郵便番号を含むGETリクエストを発行してheartrails APIを叩いた際に、郵便番号に対応した緯度と経度がレスポンスに含まれていること" do
       expect(user.get_users_location("6120051")).to eq ["34.948035", "135.767568"]

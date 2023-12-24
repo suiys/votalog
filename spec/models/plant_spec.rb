@@ -35,6 +35,7 @@ RSpec.describe Plant, type: :model do
       expect(plant_with_text.errors[:image]).to include "には拡張子が.png, .jpg, .gifのいずれかのファイルを添付してください"
     end
   end
+
   describe ".search_todays_schedules" do
     let(:user) { create(:user) }
     let(:another_user) { create(:user) }
@@ -48,6 +49,7 @@ RSpec.describe Plant, type: :model do
       expect(Plant.search_todays_schedules(user, "water")).to match_array target_plant_to_water_today
     end
   end
+
   describe ".search_tomorrows_schedules" do
     let(:user) { create(:user) }
     let(:another_user) { create(:user) }

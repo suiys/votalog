@@ -13,6 +13,7 @@ RSpec.describe "Logs", type: :system do
     before do
       visit new_log_path
     end
+
     context "新規ログ追加に成功した場合" do
       it "作成したログの詳細画面に遷移し、保存成功のフラッシュメッセージが表示されること" do
         fill_in "記録日時", with: Time.zone.now
@@ -23,6 +24,7 @@ RSpec.describe "Logs", type: :system do
         expect(page).to have_content "新しいログを保存しました"
       end
     end
+
     context "新規ログ追加に失敗した場合" do
       it "新規ログ追加画面のまま、登録失敗のフラッシュメッセージが表示されること" do
         fill_in "記録日時", with: Time.zone.now
@@ -31,6 +33,7 @@ RSpec.describe "Logs", type: :system do
         expect(page).to have_content "新しいログの保存に失敗しました"
       end
     end
+
     context "キャンセルボタンを押下した場合" do
       it "トップページに遷移すること" do
         click_on "キャンセル"
@@ -43,16 +46,19 @@ RSpec.describe "Logs", type: :system do
     before do
       visit log_path(log)
     end
+
     it "ログタイトルと記録日時が表示されること" do
       expect(page).to have_content "#{log.start_time.strftime("%Y/%m/%d")} の #{log.plant.name} ログ"
       expect(page).to have_content log.start_time.strftime("%Y/%m/%d %H:%M")
     end
+
     context "ログを編集ボタンを押下した場合" do
       it "ログ編集画面へ遷移すること" do
         click_on "ログを編集"
         expect(current_path).to eq edit_log_path(log)
       end
     end
+
     context "ログを削除ボタンを押下した場合", js: true do
       it "confirmダイアログでOKすると、株詳細画面に遷移しフラッシュメッセージが表示されること" do
         page.accept_confirm("本当にこのログを削除してよろしいですか？") do
@@ -68,6 +74,7 @@ RSpec.describe "Logs", type: :system do
         expect(current_path).to eq log_path(log)
       end
     end
+
     context "戻るボタンを押下した場合" do
       it "株詳細確認画面に遷移すること" do
         click_on "戻る"
@@ -80,10 +87,12 @@ RSpec.describe "Logs", type: :system do
     before do
       visit edit_log_path(log)
     end
+
     it "記録日時と株の項目がフォームに入力された状態になっていること" do
       expect(page).to have_field "記録日時", with: log.start_time.strftime("%Y-%m-%dT%T")
       expect(page).to have_select "株", selected: log.plant.name
     end
+
     context "ログ情報を編集し、更新に成功した場合" do
       it "ログ詳細確認画面に遷移し、更新成功のフラッシュメッセージが表示されること" do
         check "水やり"
@@ -92,6 +101,7 @@ RSpec.describe "Logs", type: :system do
         expect(page).to have_content "ログを更新しました"
       end
     end
+
     context "ログ情報を編集したが、更新に失敗した場合" do
       it "ログ編集画面のまま、バリデーションエラーメッセージが表示されること" do
         fill_in "記録日時", with: ""
@@ -100,6 +110,7 @@ RSpec.describe "Logs", type: :system do
         expect(page).to have_content "記録日時を入力してください"
       end
     end
+
     context "キャンセルボタンを押下した場合" do
       it "ログ詳細確認画面に遷移すること" do
         click_on "キャンセル"
@@ -116,12 +127,14 @@ RSpec.describe "Logs", type: :system do
     before do
       visit plant_path(plant)
     end
+
     it "当月のカレンダーが表示されること" do
       this_month = Time.zone.now.strftime("%Y 年 %m月")
       within ".simple-calendar" do
         expect(page).to have_content this_month
       end
     end
+
     context "カレンダー上のアイコンを押下した場合" do
       it "該当のログ詳細画面に遷移すること" do
         click_on "水やりアイコン"
@@ -134,6 +147,7 @@ RSpec.describe "Logs", type: :system do
         expect(current_path).to eq log_path(replanted_log)
       end
     end
+
     context "カレンダーの先月ボタンを押下した場合" do
       it "先月のカレンダーが表示されること" do
         click_on "先月"
@@ -143,6 +157,7 @@ RSpec.describe "Logs", type: :system do
         end
       end
     end
+
     context "カレンダーの翌月ボタンを押下した場合" do
       it "翌月のカレンダーが表示されること" do
         click_on "翌月"
@@ -152,6 +167,7 @@ RSpec.describe "Logs", type: :system do
         end
       end
     end
+
     context "カレンダーの今日ボタンを押下した場合" do
       it "今月のカレンダーが表示されること" do
         click_on "今日"
@@ -172,6 +188,7 @@ RSpec.describe "Logs", type: :system do
       expect(current_path).to eq root_path
       expect(page).to have_content "自分のお世話ログ以外の参照・編集・削除等の操作は行えません"
     end
+
     it "他のユーザーのログ編集が行えないこと" do
       visit edit_log_path(not_target_users_log)
       expect(current_path).to eq root_path

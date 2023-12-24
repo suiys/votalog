@@ -14,6 +14,7 @@ RSpec.describe "Plants", type: :system do
     before do
       visit new_plant_path
     end
+
     context "新規株登録に成功した場合" do
       it "登録した株の詳細画面に遷移し、登録成功のフラッシュメッセージが表示されること" do
         new_plant = build(:plant, name: "testplant")
@@ -23,6 +24,7 @@ RSpec.describe "Plants", type: :system do
         expect(page).to have_content "#{new_plant.name}をマイ多肉棚に追加しました"
       end
     end
+
     context "新規株登録に失敗した場合" do
       it "新規株登録画面のまま、登録失敗のフラッシュメッセージが表示されること" do
         click_on "マイ多肉棚に追加"
@@ -30,6 +32,7 @@ RSpec.describe "Plants", type: :system do
         expect(page).to have_content "新しい株の登録に失敗しました"
       end
     end
+
     context "キャンセルボタンを押下した場合" do
       it "トップページに遷移すること" do
         click_on "キャンセル"
@@ -44,10 +47,12 @@ RSpec.describe "Plants", type: :system do
     before do
       visit plant_path(plant_with_png_image)
     end
+
     it "ページ見出しに対象の株名称と株画像が表示されること" do
       expect(page).to have_content "お世話ログ for #{plant_with_png_image.name}"
       expect(page).to have_selector "img[alt=株イメージ画像]"
     end
+
     context "次回お世話予定を追加していない場合" do
       it "次回水やり・肥料/栄養剤散布・植替え予定日が空欄で表示されること" do
         within ".next-water-schedule" do
@@ -61,6 +66,7 @@ RSpec.describe "Plants", type: :system do
         end
       end
     end
+
     context "次回水やり予定日を追加した場合", js: true do
       it "次回水やり予定日のみが更新され、追加した予定の日付が表示されること" do
         click_on "お世話予定を追加"
@@ -77,6 +83,7 @@ RSpec.describe "Plants", type: :system do
         end
       end
     end
+
     context "次回お世話予定追加モーダルでキャンセルボタンを押下した場合", js: true do
       it "モーダルウィンドウが消え、お世話予定が表示されること" do
         click_on "お世話予定を追加"
@@ -92,12 +99,14 @@ RSpec.describe "Plants", type: :system do
         end
       end
     end
+
     context "株情報編集ボタンを押下した場合" do
       it "株情報編集画面へ遷移すること" do
         click_on "株情報の編集"
         expect(current_path).to eq edit_plant_path(plant_with_png_image)
       end
     end
+
     context "この株を削除ボタンを押下した場合", js: true do
       it "confirmダイアログでOKすると、トップページに遷移しフラッシュメッセージが表示されること" do
         page.accept_confirm("#{plant_with_png_image.name}を削除してよろしいですか？") do
@@ -113,6 +122,7 @@ RSpec.describe "Plants", type: :system do
         expect(current_path).to eq plant_path(plant_with_png_image)
       end
     end
+
     context "新規ログを追加ボタンを押下した場合" do
       it "新規ログ作成画面に遷移すること" do
         click_on "新規ログを追加"
@@ -127,6 +137,7 @@ RSpec.describe "Plants", type: :system do
     before do
       visit plant_path(plant)
     end
+
     it "対象のユーザーが所有している株の名称のみが表示されていること" do
       within ".my-shelf" do
         expect(page).to have_content plant.name
@@ -134,18 +145,21 @@ RSpec.describe "Plants", type: :system do
         expect(page).to have_content target_users_another_plant.name
       end
     end
+
     context "新しい株を追加ボタンを押下した場合" do
       it "新規株登録画面に遷移すること" do
         click_on "新しい株を追加する"
         expect(current_path).to eq new_plant_path
       end
     end
+
     context "ALLボタンを押下した場合" do
       it "お世話スケジュール画面に遷移すること" do
         click_on "ALL"
         expect(current_path).to eq root_path
       end
     end
+
     context "株名称ボタンを押下した場合" do
       it "株詳細確認画面に遷移すること" do
         click_on target_users_another_plant.name
@@ -158,9 +172,11 @@ RSpec.describe "Plants", type: :system do
     before do
       visit edit_plant_path(plant)
     end
+
     it "必須項目の株名称がフォームに表示されていること" do
       expect(page).to have_field "株名称", with: plant.name
     end
+
     context "株情報を編集し、更新に成功した場合" do
       it "株詳細確認画面に遷移すること" do
         attach_file "株画像", "#{Rails.root}/spec/fixtures/sample_image.png"
@@ -168,6 +184,7 @@ RSpec.describe "Plants", type: :system do
         expect(current_path).to eq plant_path(plant)
       end
     end
+
     context "株情報を編集したが、更新に失敗した場合" do
       it "株情報編集画面のまま、バリデーションエラーメッセージが表示されること" do
         fill_in "株名称", with: ""
@@ -176,6 +193,7 @@ RSpec.describe "Plants", type: :system do
         expect(page).to have_content "株名称を入力してください"
       end
     end
+
     context "キャンセルボタンを押下した場合" do
       it "株詳細確認画面に遷移すること" do
         click_on "キャンセル"
@@ -190,6 +208,7 @@ RSpec.describe "Plants", type: :system do
       expect(current_path).to eq root_path
       expect(page).to have_content "自分が所持している株以外の参照・編集・削除等の操作は行えません"
     end
+
     it "他のユーザーの株情報編集が行えないこと" do
       visit edit_plant_path(not_target_users_plant)
       expect(current_path).to eq root_path
