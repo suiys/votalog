@@ -408,5 +408,29 @@ RSpec.describe "Users", type: :system do
     end
   end
 
-  describe ""
+  describe "ゲストユーザー情報の操作が行えないようにする機能のテスト" do
+    let(:guest_user) { create(:user, email: "guest@example.com") }
+
+    before do
+      login_as(guest_user, scope: :user)
+    end
+
+    it "ゲストユーザー情報の編集が行えないこと" do
+      visit edit_user_registration_path
+      fill_in "ユーザー名", with: "テストユーザー"
+      fill_in "現在のパスワード", with: guest_user.password
+      click_on "変更を保存"
+      expect(current_path).to eq root_path
+      expect(page).to have_content "ゲストユーザー情報の編集・削除はできません"
+    end
+
+    it "ゲストユーザー情報の削除が行えないこと", js: true do
+      visit users_account_path
+      page.accept_confirm("本当にこのアカウントを削除してよろしいですか？") do
+        click_on "このアカウントを削除する"
+      end
+      expect(current_path).to eq root_path
+      expect(page).to have_content "ゲストユーザー情報の編集・削除はできません"
+    end
+  end
 end
