@@ -11,10 +11,7 @@ plant1 = Plant.find_or_create_by!(name: "ラウリンゼ") do |plant|
   plant.next_fertilizer_day = Date.new(2024, 1, 30)
   plant.next_replant_day = Date.new(2024, 4, 30)
 end
-plant1.image.attach(
-  io: File.open(Rails.root.join("db/fixtures/sample_image.jpg").to_s),
-  filename: "sample_image.jpg"
-)
+attach_image(plant1)
 
 Plant.find_or_create_by!(name: "レツーサ") do |plant|
   plant.user_id = 1
@@ -28,10 +25,7 @@ plant2 = Plant.find_or_create_by!(name: "ドドソン") do |plant|
   plant.name = "ドドソン"
   plant.next_water_day = Date.new(2024, 1, 15)
 end
-plant2.image.attach(
-  io: File.open(Rails.root.join("db/fixtures/sample_image.jpg").to_s),
-  filename: "sample_image.jpg"
-)
+attach_image(plant2)
 
 plant3 = Plant.find_or_create_by!(name: "十二の巻") do |plant|
   plant.user_id = 1
@@ -39,10 +33,7 @@ plant3 = Plant.find_or_create_by!(name: "十二の巻") do |plant|
   plant.next_water_day = Date.new(2024, 1, 10)
   plant.next_replant_day = Date.new(2024, 2, 20)
 end
-plant3.image.attach(
-  io: File.open(Rails.root.join("db/fixtures/sample_image.jpg").to_s),
-  filename: "sample_image.jpg"
-)
+attach_image(plant3)
 
 Plant.find_or_create_by!(name: "玉扇") do |plant|
   plant.user_id = 1
@@ -61,10 +52,7 @@ end
     log.light_start_at = Time.zone.parse("2023-12-10 09:00:00")
     log.light_end_at = Time.zone.parse("2023-12-10 18:00:00")
   end
-  log1.image.attach(
-    io: File.open(Rails.root.join("db/fixtures/sample_image.jpg").to_s),
-    filename: "sample_image.jpg"
-  )
+  attach_image(log1)
 
   Log.find_or_create_by!(start_time: Time.zone.parse("2023-12-20 17:00:00"), plant_id: n + 1) do |log|
     log.user_id = 1
@@ -92,10 +80,7 @@ end
     log.light_start_at = Time.zone.parse("2024-01-05 10:00:00")
     log.light_end_at = Time.zone.parse("2024-01-05 17:00:00")
   end
-  log2.image.attach(
-    io: File.open(Rails.root.join("db/fixtures/sample_image.jpg").to_s),
-    filename: "sample_image.jpg"
-  )
+  attach_image(log2)
 
   log3 = Log.find_or_create_by!(start_time: Time.zone.parse("2024-01-10 23:45:00"), plant_id: n + 1) do |log|
     log.user_id = 1
@@ -107,8 +92,12 @@ end
     log.light_start_at = Time.zone.parse("2024-01-10 08:30:00")
     log.light_end_at = Time.zone.parse("2024-01-10 16:20:50")
   end
-  log3.image.attach(
-    io: File.open(Rails.root.join("db/fixtures/sample_image.jpg").to_s),
-    filename: "sample_image.jpg"
+  attach_image(log3)
+end
+
+def attach_image(target_instance)
+  target_instance.image.attach(
+  io: File.open(Rails.root.join("db/fixtures/sample_image.jpg").to_s),
+  filename: "sample_image.jpg"
   )
 end
