@@ -35,6 +35,6 @@ class User < ApplicationRecord
       latitude = nil
       longitude = nil
     end
-    return latitude, longitude
+    [latitude, longitude]
   end
 end

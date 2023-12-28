@@ -16,8 +16,12 @@ RSpec.describe Log, type: :model do
     let(:log_with_jpg_image) { build(:log_with_jpg_image) }
     let(:log_with_gif_image) { build(:log_with_gif_image) }
     let(:log_with_text) { build(:log_with_text) }
-    let(:log_with_light_end_at_after_start) { build(:log,light_start_at: Time.zone.now, light_end_at: Time.zone.now + 1.day) }
-    let(:log_with_light_end_at_before_start) { build(:log,light_start_at: Time.zone.now, light_end_at: Time.zone.now - 1.day) }
+    let(:log_with_light_end_at_after_start) do
+      build(:log, light_start_at: Time.zone.now, light_end_at: Time.zone.now + 1.day)
+    end
+    let(:log_with_light_end_at_before_start) do
+      build(:log, light_start_at: Time.zone.now, light_end_at: Time.zone.now - 1.day)
+    end
 
     it "ログの記録日があればバリデーションをパスすること" do
       expect(log).to be_valid
@@ -92,9 +96,9 @@ RSpec.describe Log, type: :model do
     let(:log) { create(:log, user: user) }
 
     it "ユーザーが位置情報を登録している場合、OpenWeatherMapに位置情報を含むGETリクエストを送信しエラーなくレスポンスが取得できること" do
-      expect{
+      expect do
         log.get_weather_info(user.latitude, user.longitude)
-      }.not_to raise_error
+      end.not_to raise_error
     end
   end
 end
