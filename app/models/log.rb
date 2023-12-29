@@ -3,8 +3,7 @@ class Log < ApplicationRecord
   validates :start_time, presence: true
   validates :memo, length: { maximum: 300 }
   validates :temperature, numericality: true, allow_nil: true
-  validates :humidity, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 },
-                       allow_nil: true
+  validates :humidity, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, allow_nil: true
   validate :is_file_type_valid?
   validate :is_light_end_at_after_light_start_at?
 

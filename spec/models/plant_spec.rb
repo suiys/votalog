@@ -55,8 +55,7 @@ RSpec.describe Plant, type: :model do
     let!(:plant_to_replant_today) { create(:plant, next_replant_day: Time.zone.today, user: user) }
 
     it "今日水やり予定の株が全て抽出できていること" do
-      expect(Plant.search_todays_schedules(user,
-"water")).to match_array target_plant_to_water_today
+      expect(Plant.search_todays_schedules(user, "water")).to match_array target_plant_to_water_today
     end
   end
 
@@ -78,8 +77,7 @@ RSpec.describe Plant, type: :model do
     end
 
     it "明日水やり予定の株が全て抽出できていること" do
-      expect(Plant.search_tomorrows_schedules(user,
-"water")).to match_array target_plant_to_water_tomorrow
+      expect(Plant.search_tomorrows_schedules(user, "water")).to match_array target_plant_to_water_tomorrow
     end
   end
 end

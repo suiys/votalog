@@ -54,8 +54,8 @@ class LogsController < ApplicationController
   private
 
   def log_params
-    params.require(:log).permit(:start_time, :is_watered, :is_fertilized, :is_replanted, :memo,
-:image, :temperature, :humidity, :light_start_at, :light_end_at, :plant_id)
+    params.require(:log).permit(:start_time, :is_watered, :is_fertilized, :is_replanted, :memo, :image, :temperature, :humidity,
+    :light_start_at, :light_end_at, :plant_id)
   end
 
   def ensure_correct_user

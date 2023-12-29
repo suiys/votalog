@@ -48,8 +48,7 @@ class PlantsController < ApplicationController
   private
 
   def plant_params
-    params.require(:plant).permit(:name, :next_water_day, :next_fertilizer_day,
-:next_replant_day, :image)
+    params.require(:plant).permit(:name, :next_water_day, :next_fertilizer_day, :next_replant_day, :image)
   end
 
   def ensure_correct_user
