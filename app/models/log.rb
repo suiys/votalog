@@ -29,7 +29,11 @@ class Log < ApplicationRecord
 
   def get_weather_info(latitude, longitude)
     client = HTTPClient.new
-    url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude.to_s + "&lon=" + longitude.to_s + "&units=metric&appid=" + ENV['OPEN_WEATHER_API_KEY']
+    lat = latitude.to_s
+    lon = longitude.to_s
+    api_key = ENV['OPEN_WEATHER_API_KEY']
+    baseurl = "https://api.openweathermap.org/data/2.5/weather"
+    url = baseurl + "?lat=" + lat + "&lon=" + lon + "&units=metric&appid=" + api_key
     response = client.get(url)
     res = JSON.parse(response.body)
     begin
@@ -40,6 +44,6 @@ class Log < ApplicationRecord
       temperature = nil
       humidity = nil
     end
-    return temperature, humidity
+    [temperature, humidity]
   end
 end

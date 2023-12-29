@@ -5,7 +5,7 @@ FactoryBot.define do
     association :plant
   end
 
-  factory :log_with_png_image, class: Log do
+  factory :log_with_png_image, class: "Log" do
     start_time { Time.zone.today }
     association :user
     association :plant
@@ -19,7 +19,7 @@ FactoryBot.define do
     end
   end
 
-  factory :log_with_jpg_image, class: Log do
+  factory :log_with_jpg_image, class: "Log" do
     start_time { Time.zone.today }
     association :user
     association :plant
@@ -33,7 +33,7 @@ FactoryBot.define do
     end
   end
 
-  factory :log_with_gif_image, class: Log do
+  factory :log_with_gif_image, class: "Log" do
     start_time { Time.zone.today }
     association :user
     association :plant
@@ -47,7 +47,7 @@ FactoryBot.define do
     end
   end
 
-  factory :log_with_text, class: Log do
+  factory :log_with_text, class: "Log" do
     start_time { Time.zone.today }
     association :user
     association :plant

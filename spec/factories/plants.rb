@@ -4,7 +4,7 @@ FactoryBot.define do
     association :user
   end
 
-  factory :plant_with_png_image, class: Plant do
+  factory :plant_with_png_image, class: "Plant" do
     name { "testplant_with_png" }
     association :user
 
@@ -17,7 +17,7 @@ FactoryBot.define do
     end
   end
 
-  factory :plant_with_jpg_image, class: Plant do
+  factory :plant_with_jpg_image, class: "Plant" do
     name { "testplant_with_jpg" }
     association :user
 
@@ -30,7 +30,7 @@ FactoryBot.define do
     end
   end
 
-  factory :plant_with_gif_image, class: Plant do
+  factory :plant_with_gif_image, class: "Plant" do
     name { "testplant_with_gif" }
     association :user
 
@@ -43,7 +43,7 @@ FactoryBot.define do
     end
   end
 
-  factory :plant_with_text, class: Plant do
+  factory :plant_with_text, class: "Plant" do
     name { "testplant_with_text" }
     association :user
 

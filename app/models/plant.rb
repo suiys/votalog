@@ -17,10 +17,10 @@ class Plant < ApplicationRecord
   end
 
   def self.search_todays_schedules(user, params)
-    Plant.where("user_id = ? and next_#{params}_day = ?", user.id, Time.zone.today)
+    Plant.where("user_id = ? and next_#{params}_day = ?", user.id, Time.zone.today) # rubocop:disable Airbnb/RiskyActiverecordInvocation
   end
 
   def self.search_tomorrows_schedules(user, params)
-    Plant.where("user_id = ? and next_#{params}_day = ?", user.id, Time.zone.tomorrow)
+    Plant.where("user_id = ? and next_#{params}_day = ?", user.id, Time.zone.tomorrow) # rubocop:disable Airbnb/RiskyActiverecordInvocation
   end
 end

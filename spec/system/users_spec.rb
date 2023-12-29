@@ -359,8 +359,12 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "ログイン時のトップページのテスト" do
-    let!(:plant1) { create(:plant, next_water_day: Time.zone.today, next_replant_day: Time.zone.tomorrow, user: user) }
-    let!(:plant2) { create(:plant, next_fertilizer_day: Time.zone.tomorrow, next_replant_day: Time.zone.tomorrow, user: user) }
+    let!(:plant1) do
+      create(:plant, next_water_day: Time.zone.today, next_replant_day: Time.zone.tomorrow, user: user)
+    end
+    let!(:plant2) do
+      create(:plant, next_fertilizer_day: Time.zone.tomorrow, next_replant_day: Time.zone.tomorrow, user: user)
+    end
 
     before do
       login_as(user, scope: :user)
