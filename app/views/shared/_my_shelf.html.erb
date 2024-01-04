@@ -1,17 +1,20 @@
 <section class="u-content-space">
   <div class="container my-shelf">
-    <header class="w-md50 mx-auto mb-2">
+    <header class="w-md50 mx-auto mb-4">
       <h4>マイ多肉棚</h4>
     </header>
-    <div class="mb-6 text-right">
-      <%= link_to new_plant_path, class: "btn btn-outline-info" do %>
-        新しい株を追加する<i class="fas fa-plus-circle ml-2"></i>
-      <% end %>
-    </div>
-    <div class="row mb-2">
-      <div class="col-lg-4 col-md-6 text-center mb-3">
-        <%= link_to "ALL", root_path, class: "btn btn-outline-secondary" %>
+    <div class="row mb-4">
+      <div class="col-md-6 text-center">
+        <%= link_to "お世話スケジュール(全体)", root_path, class: "btn btn-outline-info" %>
       </div>
+      <div class="col-md-6 text-center">
+        <%= link_to new_plant_path, class: "btn btn-outline-info" do %>
+          新しい株を追加する<i class="fas fa-plus-circle ml-2"></i>
+        <% end %>
+      </div>
+    </div>
+    <hr class="mb-4">
+    <div class="row">
       <% resources.each do |resource| %>
         <div class="col-lg-4 col-md-6 text-center mb-3">
           <%= link_to plant_path(resource), class: "btn btn-outline-secondary" do %>
