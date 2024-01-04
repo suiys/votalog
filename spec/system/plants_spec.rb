@@ -155,7 +155,7 @@ RSpec.describe "Plants", type: :system do
 
     context "ALLボタンを押下した場合" do
       it "お世話スケジュール画面に遷移すること" do
-        click_on "ALL"
+        click_on "お世話スケジュール"
         expect(current_path).to eq root_path
       end
     end
