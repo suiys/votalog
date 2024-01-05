@@ -20,7 +20,7 @@ RSpec.describe "Plants", type: :system do
         new_plant = build(:plant, name: "testplant")
         fill_in "株名称", with: new_plant.name
         click_on "マイ多肉棚に追加"
-        expect(page).to have_content "お世話ログ for #{new_plant.name}"
+        expect(page).to have_content "お世話ログ | #{new_plant.name}"
         expect(page).to have_content "#{new_plant.name}をマイ多肉棚に追加しました"
       end
     end
@@ -49,7 +49,7 @@ RSpec.describe "Plants", type: :system do
     end
 
     it "ページ見出しに対象の株名称と株画像が表示されること" do
-      expect(page).to have_content "お世話ログ for #{plant_with_png_image.name}"
+      expect(page).to have_content "お世話ログ | #{plant_with_png_image.name}"
       expect(page).to have_selector "img[alt=株イメージ画像]"
     end
 
