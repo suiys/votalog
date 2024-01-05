@@ -2,14 +2,16 @@
 
 <section class="u-content-space">
   <div class="container">
-    <header class="w-md-50 mx-auto mb-6 d-flex justify-content-between align-items-center">
-      <h2 class="mb-0">お世話ログ for <%= @plant.name %></h2>
-      <div>
-        <% if @plant.image.attached? %>
-          <%= image_tag @plant.image.variant(resize: "72", gravity: "center", crop: "72x72+0+0").processed, class: "u-box-shadow-lg img-fluid rounded-circle", alt: "株イメージ画像" %>
-        <% end %>
-      </div>
-    </header>
+    <% if @plant.image.attached? %>
+      <header class="w-md-50 mx-auto mb-6 d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">お世話ログ for <%= @plant.name %></h2>
+        <%= image_tag @plant.image.variant(resize: "72", gravity: "center", crop: "48x48+0+0").processed, class: "u-box-shadow-lg img-fluid rounded-circle", alt: "株イメージ画像" %>
+      </header>
+    <% else %>
+      <header class="w-md-50 mx-auto mb-6 text-center">
+        <h2 class="mb-0">お世話ログ for <%= @plant.name %></h2>
+      </header>
+    <% end %>
     <div class="mb-6">
       <%= month_calendar events: @plant.logs do |date, logs| %>
         <%= date.day %>
