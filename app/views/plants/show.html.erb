@@ -2,14 +2,16 @@
 
 <section class="u-content-space">
   <div class="container">
-    <header class="w-md50 mx-automb-6 mb-4 d-flex justify-content-between align-items-center">
-      <h2 class="mb-0">お世話ログ for <%= @plant.name %></h2>
-      <div>
-        <% if @plant.image.attached? %>
-          <%= image_tag @plant.image.variant(resize: "72", gravity: "center", crop: "72x72+0+0").processed, class: "u-box-shadow-lg img-fluid rounded-circle", alt: "株イメージ画像" %>
-        <% end %>
-      </div>
-    </header>
+    <% if @plant.image.attached? %>
+      <header class="w-md-50 mx-auto mb-6 d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">お世話ログ | <%= @plant.name %></h2>
+        <%= image_tag @plant.image.variant(resize: "72", gravity: "center", crop: "48x48+0+0").processed, class: "u-box-shadow-lg img-fluid rounded-circle", alt: "株イメージ画像" %>
+      </header>
+    <% else %>
+      <header class="w-md-50 mx-auto mb-6 text-center">
+        <h2 class="mb-0">お世話ログ | <%= @plant.name %></h2>
+      </header>
+    <% end %>
     <div class="mb-6">
       <%= month_calendar events: @plant.logs do |date, logs| %>
         <%= date.day %>
@@ -40,6 +42,9 @@
       </p>
       <p class="pl-2">カレンダー上の各アイコンをクリックすると該当するログにジャンプして詳細を確認できます</p>
     </div>
+    <h4 class="w-md-50 mx-auto mb-2 text-center">
+      次回お世話予定 | <%= @plant.name %>
+    </h4>
     <div class="row mb-6">
       <div class="col-md-4 text-center bg-light p-3 next-water-schedule">
         <p>次回水やり予定日</p>
@@ -82,7 +87,7 @@
   </div>
 </section>
 
-<%= render  "shared/my_shelf", resources: @user.plants %>
+<%= render "shared/my_shelf", resources: @user.plants %>
 
 <div class="modal fade" id="nextDayModal" tabindex="-1" role="dialog" area-labelledby="nextDayTitle" style="display: none;" area-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
