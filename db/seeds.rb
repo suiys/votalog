@@ -70,29 +70,6 @@ end
     log.is_replanted = true
     log.memo = "テストデータログ本文テストデータログ本文テストデータログ本文テストデータログ本文テストデータログ本文テストデータログ本文"
   end
-
-  log2 = Log.find_or_create_by!(start_time: Time.zone.parse("2024-01-05 21:30:30"), plant_id: n + 1) do |log|
-    log.user_id = 1
-    log.plant_id = n + 1
-    log.start_time = Time.zone.parse("2024-01-05 21:30:30")
-    log.is_watered = true
-    log.is_fertilized = true
-    log.light_start_at = Time.zone.parse("2024-01-05 10:00:00")
-    log.light_end_at = Time.zone.parse("2024-01-05 17:00:00")
-  end
-  attach_image(log2)
-
-  log3 = Log.find_or_create_by!(start_time: Time.zone.parse("2024-01-10 23:45:00"), plant_id: n + 1) do |log|
-    log.user_id = 1
-    log.plant_id = n + 1
-    log.start_time = Time.zone.parse("2024-01-10 23:45:00")
-    log.is_watered = true
-    log.is_fertilized = true
-    log.is_replanted = true
-    log.light_start_at = Time.zone.parse("2024-01-10 08:30:00")
-    log.light_end_at = Time.zone.parse("2024-01-10 16:20:50")
-  end
-  attach_image(log3)
 end
 
 def attach_image(target_instance)
