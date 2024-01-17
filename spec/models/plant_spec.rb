@@ -59,9 +59,13 @@ RSpec.describe Plant, type: :model do
     end
   end
 
-  describe ".search_tomorrows_schedules" do
-    let!(:target_plant_to_water_tomorrow) do
-      create_list(:plant, 2, next_water_day: Time.zone.tomorrow, user: user)
+  describe ".search_future_schedules" do
+    let!(:target_plant_to_water_future) do
+      [
+        create(:plant, next_water_day: Time.zone.tomorrow, user: user),
+        create(:plant, next_water_day: Time.zone.tomorrow + 1.day, user: user),
+        create(:plant, next_water_day: Time.zone.tomorrow + 2.day, user: user),
+      ]
     end
     let!(:not_target_user_plant_to_water_tomorrow) do
       create(:plant, next_water_day: Time.zone.tomorrow, user: another_user)
@@ -69,15 +73,15 @@ RSpec.describe Plant, type: :model do
     let!(:not_target_date_plant_to_water) do
       create(:plant, next_water_day: Time.zone.today, user: user)
     end
-    let!(:plant_to_fertilize_today) do
+    let!(:plant_to_fertilize_tomorrow) do
       create(:plant, next_fertilizer_day: Time.zone.tomorrow, user: user)
     end
-    let!(:plant_to_replant_today) do
+    let!(:plant_to_replant_tomorrow) do
       create(:plant, next_replant_day: Time.zone.tomorrow, user: user)
     end
 
-    it "明日水やり予定の株が全て抽出できていること" do
-      expect(Plant.search_tomorrows_schedules(user, "water")).to match_array target_plant_to_water_tomorrow
+    it "明日以降水やり予定の株が過不足なく抽出できていること" do
+      expect(Plant.search_future_schedules(user, "water")).to match_array target_plant_to_water_future
     end
   end
 end
