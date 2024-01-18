@@ -1,0 +1,14 @@
+<div>
+  <% if schedules.present? %>
+    <% schedules.each do |plant| %>
+      <p class="mb-2">
+        <%= link_to plant_path(plant) do %>
+          <%= plant.name %>
+          (<%= plant.next_water_day.strftime("%Y/%m/%d") %>)
+        <% end %>
+      </p>
+    <% end %>
+  <% else %>
+    <p class="mb-2">なし</p>
+  <% end %>
+</div>

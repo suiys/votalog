@@ -379,18 +379,21 @@ RSpec.describe "Users", type: :system do
       end
     end
 
-    it "明日肥料/栄養剤散布予定の株に名称が表示され、押下すると株詳細画面に遷移すること" do
-      within ".tomorrows-fertilizer-schedule" do
+    it "明日以降肥料/栄養剤散布予定の株に名称と日付が表示され、押下すると株詳細画面に遷移すること" do
+      within ".future-fertilizer-schedule" do
         expect(page).to have_content plant2.name
+        expect(page).to have_content plant2.next_fertilizer_day.strftime("%Y/%m/%d")
         click_on plant2.name
         expect(current_path).to eq plant_path(plant2)
       end
     end
 
-    it "明日植替え予定の株に名称が表示され、押下すると株詳細画面に遷移すること" do
-      within ".tomorrows-replant-schedule" do
+    it "明日以降植替え予定の株に名称と日付が表示され、押下すると株詳細画面に遷移すること" do
+      within ".future-replant-schedule" do
         expect(page).to have_content plant1.name
+        expect(page).to have_content plant1.next_replant_day.strftime("%Y/%m/%d")
         expect(page).to have_content plant2.name
+        expect(page).to have_content plant2.next_replant_day.strftime("%Y/%m/%d")
         click_on plant1.name
         expect(current_path).to eq plant_path(plant1)
         visit root_path
@@ -406,7 +409,7 @@ RSpec.describe "Users", type: :system do
       within ".todays-replant-schedule" do
         expect(page).to have_content "なし"
       end
-      within ".tomorrows-water-schedule" do
+      within ".future-water-schedule" do
         expect(page).to have_content "なし"
       end
     end

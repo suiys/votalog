@@ -20,7 +20,7 @@ class Plant < ApplicationRecord
     Plant.where("user_id = ? and next_#{params}_day = ?", user.id, Time.zone.today) # rubocop:disable Airbnb/RiskyActiverecordInvocation
   end
 
-  def self.search_tomorrows_schedules(user, params)
-    Plant.where("user_id = ? and next_#{params}_day = ?", user.id, Time.zone.tomorrow) # rubocop:disable Airbnb/RiskyActiverecordInvocation
+  def self.search_future_schedules(user, params)
+    Plant.where("user_id = ? and next_#{params}_day >= ?", user.id, Time.zone.tomorrow).order("next_#{params}_day") # rubocop:disable Airbnb/RiskyActiverecordInvocation
   end
 end

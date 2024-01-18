@@ -22,22 +22,23 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4 text-center bg-light p-3 tomorrows-water-schedule">
-          <p>明日水やり予定の株</p>
+        <div class="col-md-4 text-center bg-light p-3 future-water-schedule">
+          <p>明日以降水やり予定の株</p>
           <hr class="mb-4">
-          <%= render "shared/schedule_list", schedules: @tomorrows_water_scheduled_plants %>
+          <%= render "shared/future_water_schedule", schedules: @future_water_scheduled_plants %>
         </div>
-        <div class="col-md-4 text-center bg-light p-3 tomorrows-fertilizer-schedule">
-          <p>明日肥料/栄養剤散布予定の株</p>
+        <div class="col-md-4 text-center bg-light p-3 future-fertilizer-schedule">
+          <p>明日以降肥料/栄養剤散布予定の株</p>
           <hr class="mb-4">
-          <%= render "shared/schedule_list", schedules: @tomorrows_fertilizer_scheduled_plants %>
+          <%= render "shared/future_fertilizer_schedule", schedules: @future_fertilizer_scheduled_plants %>
         </div>
-        <div class="col-md-4 text-center bg-light p-3 tomorrows-replant-schedule">
-          <p>明日植替え予定の株</p>
+        <div class="col-md-4 text-center bg-light p-3 future-replant-schedule">
+          <p>明日以降植替え予定の株</p>
           <hr class="mb-4">
-          <%= render "shared/schedule_list", schedules: @tomorrows_replant_scheduled_plants %>
+          <%= render "shared/future_replant_schedule", schedules: @future_replant_scheduled_plants %>
         </div>
       </div>
+      <p>※ 明日以降のお世話スケジュールは直近の予定を最大5つまで表示します</p>
     </div>
   </section>
   <%= render "shared/my_shelf", resources: @user.plants %>
