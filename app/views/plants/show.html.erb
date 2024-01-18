@@ -2,21 +2,39 @@
 
 <section class="u-content-space">
   <div class="container">
-    <% if @plant.image.attached? %>
-      <header class="w-md-50 mx-auto mb-6 d-flex justify-content-between align-items-center">
-        <h2 class="mb-0">お世話ログ | <%= @plant.name %></h2>
-        <%= image_tag @plant.image.variant(resize: "72", gravity: "center", crop: "48x48+0+0").processed, class: "u-box-shadow-lg img-fluid rounded-circle", alt: "株イメージ画像" %>
-      </header>
-    <% else %>
-      <header class="w-md-50 mx-auto text-center">
-        <h2>お世話ログ | <%= @plant.name %></h2>
-      </header>
-      <div class="text-right mb-4">
-        <%= link_to new_log_path, class: "btn btn-secondary" do %>
-          新規ログを追加<i class="fas fa-plus-circle ml-2"></i>
+    <header class="w-md-50 mx-auto mb-6 text-center">
+      <h2 class="mb-0"><%= @plant.name %></h2>
+    </header>
+    <div class="row justify-content-center">
+      <div class="col-md-4 text-center">
+        <% if @plant.image.attached? %>
+          <%= image_tag @plant.image.variant(resize: "256", gravity: "center", crop: "256x256+0+0").processed, class: "u-box-shadow-lg img-fluid img-thumbnail", alt: "株画像" %>
+        <% else %>
+          <%= image_tag "plant_image_sample.png", class: "u-box-shadow-lg img-fluid img-thumbnail", alt: "株サンプル画像" %>
         <% end %>
       </div>
-    <% end %>
+      <div class="col-md-4 d-flex flex-column justify-content-center">
+        <div class="text-center m-4">
+          <%= link_to "株情報の編集", edit_plant_path(@plant), class: "btn btn-outline-secondary" %>
+        </div>
+        <div class="text-center m-4">
+          <%= link_to "この株を削除", plant_path(@plant), method: :delete, data: { confirm: "#{@plant.name}を削除してよろしいですか？この操作は取り消せません" }, class: "btn btn-outline-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="u-content-space">
+  <div class="container">
+    <header class="w-md-50 mx-auto mb-6 text-center">
+      <h3 class="mb-0">お世話ログ | <%= @plant.name %></h3>
+    </header>
+    <div class="text-right mb-4">
+      <%= link_to new_log_path, class: "btn btn-secondary" do %>
+        新規ログを追加<i class="fas fa-plus-circle ml-2"></i>
+      <% end %>
+    </div>
     <div class="mb-6">
       <%= month_calendar events: @plant.logs do |date, logs| %>
         <%= date.day %>
@@ -47,22 +65,13 @@
       </p>
       <p class="pl-2">カレンダー上の各アイコンをクリックすると該当するログにジャンプして詳細を確認できます</p>
     </div>
-
-    <div class="d-flex justify-content-around p-4">
-      <div class="text-center">
-        <%= link_to "株情報の編集", edit_plant_path(@plant), class: "btn btn-outline-secondary" %>
-      </div>
-      <div class="text-center">
-        <%= link_to "この株を削除", plant_path(@plant), method: :delete, data: { confirm: "#{@plant.name}を削除してよろしいですか？この操作は取り消せません" }, class: "btn btn-outline-danger" %>
-      </div>
-    </div>
   </div>
 </section>
 
 <section class="u-content-space">
   <div class="container">
     <header class="w-md-50 mx-auto mb-6 text-center">
-      <h2 class="mb-0">次回お世話予定 | <%= @plant.name %></h2>
+      <h3 class="mb-0">次回お世話予定 | <%= @plant.name %></h3>
     </header>
     <div class="row mb-6">
       <div class="col-md-4 text-center bg-light p-3 next-water-schedule">
