@@ -48,9 +48,22 @@ RSpec.describe "Plants", type: :system do
       visit plant_path(plant_with_png_image)
     end
 
-    it "ページ見出しに対象の株名称と株画像が表示されること" do
+    it "ページ見出しに対象の株名称が表示されること" do
       expect(page).to have_content "お世話ログ | #{plant_with_png_image.name}"
-      expect(page).to have_selector "img[alt=株イメージ画像]"
+      expect(page).to have_content "次回お世話予定 | #{plant_with_png_image.name}"
+    end
+
+    context "株画像が登録されている場合" do
+      it "登録した画像が表示されること" do
+        expect(page).to have_selector "img[alt=株画像]"
+      end
+    end
+
+    context "株画像が登録されていない場合" do
+      it "デフォルト画像が表示されること" do
+        visit plant_path(plant)
+        expect(page).to have_selector "img[alt=株サンプル画像]"
+      end
     end
 
     context "次回お世話予定を追加していない場合" do
