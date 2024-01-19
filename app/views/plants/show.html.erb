@@ -28,6 +28,42 @@
 <section class="u-content-space">
   <div class="container">
     <header class="w-md-50 mx-auto mb-6 text-center">
+      <h3 class="mb-0">次回お世話予定 | <%= @plant.name %></h3>
+    </header>
+    <div class="row mb-6">
+      <div class="col-md-4 text-center bg-light p-3 next-water-schedule">
+        <p>次回水やり予定日</p>
+        <hr class="mb-6">
+        <div class="js-next-water-day">
+          <%= render "plants/next_water_day", plant: @plant %>
+        </div>
+      </div>
+      <div class="col-md-4 text-center bg-light p-3 next-fertilizer-schedule">
+        <p>次回肥料/栄養剤散布予定日</p>
+        <hr class="mb-6">
+        <div class="js-next-fertilizer-day">
+          <%= render "plants/next_fertilizer_day", plant: @plant %>
+        </div>
+        <div class="mt-4">
+          <%= link_to "#nextDayModal", class: "btn btn-outline-info", data: { toggle: "modal" } do %>
+            お世話予定を追加/変更<i class="fas fa-plus-circle ml-2"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-4 text-center bg-light p-3 next-replant-schedule">
+        <p>次回植替え予定日</p>
+        <hr class="mb-6">
+        <div class="js-next-replant-day">
+          <%= render "plants/next_replant_day", plant: @plant %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="u-content-space">
+  <div class="container">
+    <header class="w-md-50 mx-auto mb-6 text-center">
       <h3 class="mb-0">お世話ログ | <%= @plant.name %></h3>
     </header>
     <div class="text-right mb-4">
@@ -61,45 +97,9 @@
       <p class="mb-2">
         <%= image_tag "water_icon.png", class: "calendar-icons p-1", alt: "水やりアイコン" %>アイコンは水やり、
         <%= image_tag "fertilizer_icon.png", class: "calendar-icons p-1", alt: "肥料/栄養剤アイコン" %>アイコンは肥料/栄養剤、
-        <%= image_tag "pot_icon.png", class: "calendar-icons p-1", alt: "植替えアイコン" %>アイコンは植替えを表します
+        <%= image_tag "pot_icon.png", class: "calendar-icons p-1", alt: "植替えアイコン" %>アイコンは植替えのログが記録されていることを表します
       </p>
-      <p class="pl-2">カレンダー上の各アイコンをクリックすると該当するログにジャンプして詳細を確認できます</p>
-    </div>
-  </div>
-</section>
-
-<section class="u-content-space">
-  <div class="container">
-    <header class="w-md-50 mx-auto mb-6 text-center">
-      <h3 class="mb-0">次回お世話予定 | <%= @plant.name %></h3>
-    </header>
-    <div class="row mb-6">
-      <div class="col-md-4 text-center bg-light p-3 next-water-schedule">
-        <p>次回水やり予定日</p>
-        <hr class="mb-6">
-        <div class="js-next-water-day">
-          <%= render "plants/next_water_day", plant: @plant %>
-        </div>
-      </div>
-      <div class="col-md-4 text-center bg-light p-3 next-fertilizer-schedule">
-        <p>次回肥料/栄養剤散布予定日</p>
-        <hr class="mb-6">
-        <div class="js-next-fertilizer-day">
-          <%= render "plants/next_fertilizer_day", plant: @plant %>
-        </div>
-        <div class="mt-4">
-          <%= link_to "#nextDayModal", class: "btn btn-outline-info", data: { toggle: "modal" } do %>
-            お世話予定を追加/変更<i class="fas fa-plus-circle ml-2"></i>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-md-4 text-center bg-light p-3 next-replant-schedule">
-        <p>次回植替え予定日</p>
-        <hr class="mb-6">
-        <div class="js-next-replant-day">
-          <%= render "plants/next_replant_day", plant: @plant %>
-        </div>
-      </div>
+      <p class="pl-2">カレンダー上の各アイコンをクリックすると、該当するログにジャンプして詳細を確認できます</p>
     </div>
   </div>
 </section>
